@@ -72,7 +72,5 @@ public class GraficaBresenham {
         
         l.rotacion(-12);
         panel.lineaAlg(l, c);
-        
-        
     }
 }
