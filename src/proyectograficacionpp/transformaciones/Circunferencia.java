@@ -21,10 +21,9 @@ public class Circunferencia {
         escalay = 1;
     }
     public void translacion(int sx, int sy){
-        centro.x += sx;
-        centro.y += sy;
+        centro.translacion(sx, sy);
     }
-    public void escalacion(float sx, float sy){
+    public void escalacion(float sx, float sy){ //Escalar hace perdida de calidad en imagen
         escalax *= sx;
         escalay *= sy;
         //this.acomodarPuntoEsc();
@@ -34,11 +33,4 @@ public class Circunferencia {
         escalay = 1;
     }
     
-    public void acomodarPuntoEsc(){ //No Funciona realmente para acomodar la escalacion
-        float difx, dify;
-        difx = 1-escalax;
-        dify = 1-escalay;
-        centro.x += Math.round(centro.x * difx);
-        centro.y += Math.round(centro.y * dify);
-    }
 }

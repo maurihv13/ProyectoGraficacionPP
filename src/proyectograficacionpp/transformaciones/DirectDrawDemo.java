@@ -64,44 +64,28 @@ class DirectDrawDemo extends JPanel{
         //canvas.setRGB(posx, posy, color); Math.round(()*escY)
         while (y <= x){
             nposx = Math.round((x + posx)*escX); nposy = Math.round((y + posy)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((y + posy- dif)*escX) ; nposy = Math.round((x + posx + dif)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((-x + posx)*escX); nposy = Math.round((y + posy)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((-y + posy - dif)*escX); nposy = Math.round((x + posx + dif)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((x + posx)*escX); nposy = Math.round((-y + posy)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((y + posy - dif)*escX); nposy = Math.round((-x + posx + dif)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((-x + posx)*escX); nposy = Math.round((-y + posy)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             nposx = Math.round((-y + posy - dif)*escX); nposy = Math.round((-x + posx + dif)*escY);
-            if ((nposx > 0) && (nposy > 0)){
-                if(nposx < w && nposy < h) canvas.setRGB(nposx, nposy, color);
-            }
+            dibujarPunto(nposx, nposy, color);
             
             e = e + 2*y + 1;
             y += 1;
@@ -110,6 +94,45 @@ class DirectDrawDemo extends JPanel{
                 e = e - 2*x +1;
             }
 
+        }
+    }
+    public void lineaAlg(Linea l, Color c){
+        Punto p0, p1;
+        int x0,y0,x1,y1;
+        int color = c.getRGB();
+        p0 = l.p1;
+        p1 = l.p2;
+        x0 = p0.x; y0 = p0.y;
+        x1 = p1.x; y1 = p1.y; 
+        //modifica para escalacion
+        int dx = Math.round((x1-x0)*l.escX);
+        int dy = Math.round((y1-y0)*l.escY);
+        float m=0,b=0;
+        if(dx!=0){
+            m=(float)dy/(float)dx;
+            b=y0-m*x0;
+            if(x1>x0){
+                dx=1;
+            }else{
+                dx=-1;
+            }
+            
+            x1 = x0 + Math.round(Math.abs(x1-x0)*l.escX);
+            while(x0!=x1){
+                x0 +=dx;
+                y0 = Math.round(m*x0+b);
+                dibujarPunto(x0,y0,color);
+            }
+           //  
+        }
+    }
+    private void dibujarPunto(int posx, int posy, int c){
+        int w,h;
+        w = canvas.getWidth(); h = canvas.getHeight();
+        if ((posx > 0) && (posy > 0)){
+            if(posx < w && posy < h){
+               canvas.setRGB(posx, posy, c); 
+            } 
         }
     }
 }

@@ -16,4 +16,8 @@ public class Punto {
         this.x = this.xResp = x;
         this.y = this.yResp = y;
     }
+    public void translacion(int sx, int sy){
+        x += sx;
+        y += sy;
+    }
 }

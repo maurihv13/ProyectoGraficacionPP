@@ -48,8 +48,23 @@ public class GraficaBresenham {
         panel.bresenham(circ, c);
         
         circ.escalacion(1.5f, 1.5f);
-        circ.acomodarPuntoEsc();
+        //circ.acomodarPuntoEsc();
         panel.bresenham(circ, c);
+        
+        Punto p1, p2;
+        p1 = new Punto (152,235);
+        p2 = new Punto (237,145);
+        Linea l = new Linea(p1, p2);
+        
+        panel.lineaAlg(l, c);
+        
+        l.translacion(0, 10);
+        l.escalacion(2.0f, 2.0f);
+        panel.lineaAlg(l, c);
+        
+        l.escalacion(1, 1);
+        l.translacion(130, 96);
+        panel.lineaAlg(l, c);
         
         
     }

@@ -11,8 +11,19 @@ package proyectograficacionpp.transformaciones;
  */
 public class Linea {
     Punto p1, p2;
+    float escX,escY;
     public Linea(Punto p1, Punto p2){
         this.p1 = p1;
         this.p2 = p2;
+        escX = 1; 
+        escY = 1;
+    }
+    public void translacion(int sx, int sy){
+        p1.translacion(sx, sy);
+        p2.translacion(sx, sy);
+    }
+    public void escalacion(float sx, float sy){ 
+        escX = sx;
+        escY = sy;
     }
 }
