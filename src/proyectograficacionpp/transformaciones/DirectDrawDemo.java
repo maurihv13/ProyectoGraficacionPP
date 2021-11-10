@@ -100,13 +100,13 @@ class DirectDrawDemo extends JPanel{
         Punto p0, p1;
         int x0,y0,x1,y1;
         int color = c.getRGB();
-        p0 = l.p1;
-        p1 = l.p2;
+        p0 = l.puntos[0];
+        p1 = l.puntos[1];
         x0 = p0.x; y0 = p0.y;
         x1 = p1.x; y1 = p1.y; 
         //modifica para escalacion
-        int dx = Math.round((x1-x0)*l.escX);
-        int dy = Math.round((y1-y0)*l.escY);
+        int dx = (x1-x0);
+        int dy = (y1-y0);
         float m=0,b=0;
         if(dx!=0){
             m=(float)dy/(float)dx;
@@ -117,9 +117,8 @@ class DirectDrawDemo extends JPanel{
                 dx=-1;
             }
             
-            x1 = x0 + Math.round(Math.abs(x1-x0)*l.escX);
             while(x0!=x1){
-                x0 +=dx;
+                x0 += dx;
                 y0 = Math.round(m*x0+b);
                 dibujarPunto(x0,y0,color);
             }

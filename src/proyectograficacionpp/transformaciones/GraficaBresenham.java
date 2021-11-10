@@ -62,8 +62,15 @@ public class GraficaBresenham {
         l.escalacion(2.0f, 2.0f);
         panel.lineaAlg(l, c);
         
-        l.escalacion(1, 1);
-        l.translacion(130, 96);
+        
+        l.escalacion(0.5f, 0.5f);
+        l.translacion(0, 15);
+        panel.lineaAlg(l, c);
+        
+        l.rotacion(-12);
+        panel.lineaAlg(l, c);
+        
+        l.rotacion(-12);
         panel.lineaAlg(l, c);
         
         
