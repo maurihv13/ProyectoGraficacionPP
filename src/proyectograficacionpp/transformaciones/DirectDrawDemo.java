@@ -47,14 +47,15 @@ class DirectDrawDemo extends JPanel{
         repaint();
     }
 
+    public void limpiarPant(){
+        this.fillCanvas(Color.white);
+    }
     
     public void bresenham(Circunferencia cir, Color c){
         Punto centro = cir.centro;
         int r = cir.radio;
         int posx = centro.x;
         int posy = centro.y;
-        float escX = cir.escalax;
-        float escY = cir.escalay;
         
         int color = c.getRGB();
         int dif = posy - posx;
@@ -63,28 +64,28 @@ class DirectDrawDemo extends JPanel{
         w = canvas.getWidth(); h = canvas.getHeight();
         //canvas.setRGB(posx, posy, color); Math.round(()*escY)
         while (y <= x){
-            nposx = Math.round((x + posx)*escX); nposy = Math.round((y + posy)*escY);
+            nposx = x + posx; nposy = y + posy;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((y + posy- dif)*escX) ; nposy = Math.round((x + posx + dif)*escY);
+            nposx = y + posy - dif; nposy = x + posx + dif;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((-x + posx)*escX); nposy = Math.round((y + posy)*escY);
+            nposx = -x + posx; nposy = y + posy;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((-y + posy - dif)*escX); nposy = Math.round((x + posx + dif)*escY);
+            nposx = -y + posy - dif; nposy = x + posx + dif;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((x + posx)*escX); nposy = Math.round((-y + posy)*escY);
+            nposx = x + posx; nposy = -y + posy;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((y + posy - dif)*escX); nposy = Math.round((-x + posx + dif)*escY);
+            nposx = y + posy - dif; nposy = -x + posx + dif;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((-x + posx)*escX); nposy = Math.round((-y + posy)*escY);
+            nposx = -x + posx; nposy = -y + posy;
             dibujarPunto(nposx, nposy, color);
             
-            nposx = Math.round((-y + posy - dif)*escX); nposy = Math.round((-x + posx + dif)*escY);
+            nposx = -y + posy - dif; nposy = -x + posx + dif;
             dibujarPunto(nposx, nposy, color);
             
             e = e + 2*y + 1;
@@ -125,6 +126,21 @@ class DirectDrawDemo extends JPanel{
            //  
         }
     }
+    
+    public void triangulo(Triangulo t, Color c){
+        Linea[] lineas = t.getLineas();
+        for(Linea l : lineas){
+            this.lineaAlg(l, c);
+        }
+    }
+    
+    public void cuadrado(Cuadrado t, Color c){
+        Linea[] lineas = t.getLineas();
+        for(Linea l : lineas){
+            this.lineaAlg(l, c);
+        }
+    }
+    
     private void dibujarPunto(int posx, int posy, int c){
         int w,h;
         w = canvas.getWidth(); h = canvas.getHeight();

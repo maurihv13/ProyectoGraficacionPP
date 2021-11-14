@@ -9,12 +9,21 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Linea {
+public class Triangulo {
     Punto puntos[];
-    public Linea(Punto p1, Punto p2){
-        puntos = new Punto[2];
+    public Triangulo(Punto p1, Punto p2, Punto p3){
+        puntos = new Punto[3];
         puntos[0] = p1;
         puntos[1] = p2;
+        puntos[2] = p3;
+    }
+    
+    public Linea[] getLineas(){
+        Linea[] lineas = new Linea[3];
+        for(int i=0;i<3;i++){
+            lineas[i] = new Linea(puntos[i], puntos[(i+1)%3]);
+        }
+        return lineas;
     }
     public void translacion(int sx, int sy){
         for(Punto p : puntos){
