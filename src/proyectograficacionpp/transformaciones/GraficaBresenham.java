@@ -36,18 +36,17 @@ public class GraficaBresenham {
         
         //panel.fillCanvas(Color.WHITE); // Limpiando
         
-        circ.translacion(50,0);
+        //circ.translacion(50,0);
         
-        circ.escalacion(2f, 1);
+        circ.escalacion(0.5f);
         
         c = Color.GREEN;
         panel.bresenham(circ, c);
         
-        circ.elimEscala();
         c = Color.BLUE;
         panel.bresenham(circ, c);
         
-        circ.escalacion(1.5f, 1.5f);
+        circ.escalacion(1.5f);
         //circ.acomodarPuntoEsc();
         panel.bresenham(circ, c);
         
