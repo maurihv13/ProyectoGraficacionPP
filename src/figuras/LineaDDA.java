@@ -1,7 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package figuras;
 
@@ -15,16 +14,23 @@ import javax.swing.JFrame;
  * @author Fred
  */
 public class LineaDDA extends Canvas {
-    static int x1,x2,y1,y2,incE,incNE,d,deltaXB,deltaYB;
+    private int x1,x2,y1,y2,incE,incNE,d,deltaXB,deltaYB;
     static float pasos,xInccrementodda,yIncrementodda;
     public LineaDDA() {
       
       
     }
-    public static void main(String[] args) {
+    public void lineaDDA(int x1,int y1,int x2,int y2) {
+        JFrame frame=new JFrame();
+            frame.setBounds(500, 500,500, 500);
+            Canvas canvas=new LineaDDA();
+            canvas.setSize(500,500);
+            frame.add(canvas);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         while(true){
             int deltaX,deltaY;
-            puntoInicial();
+            //puntoInicial();
             
             deltaX=Math.abs(x2-x1);
             deltaY=Math.abs(y2-y1);
@@ -36,13 +42,8 @@ public class LineaDDA extends Canvas {
             incE=2*deltaYB;
             incNE=(2*deltaYB)-(2*deltaXB);
             d=(2*deltaYB)-(deltaXB);
-            JFrame frame=new JFrame();
-            frame.setBounds(500, 500,500, 500);
             
-            Canvas canvas=new LineaDDA();
-            canvas.setSize(500,500);
-            frame.add(canvas);
-            frame.setVisible(true);
+            
         }
     }
     public void paint(Graphics g){
@@ -66,7 +67,7 @@ public class LineaDDA extends Canvas {
             i++;
         }
     }
-    public static void puntoInicial(){
+    /*public static void puntoInicial(){
         Scanner sn=new Scanner(System.in);
         System.out.println("ingrese:");
         x1=sn.nextInt();
@@ -74,8 +75,8 @@ public class LineaDDA extends Canvas {
         System.out.println("ingrese x,y final");
         y1=sn.nextInt();
         y2=sn.nextInt();
-    }
-    public static int comparaciondda(int delY,int delX){
+    }*/
+    public  int comparaciondda(int delY,int delX){
         int res;
         if(delY>delX){
             res=delY;
