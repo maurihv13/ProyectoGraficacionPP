@@ -18,12 +18,8 @@ public class LineaDDA extends Canvas {
     static int x1,x2,y1,y2,incE,incNE,d,deltaXB,deltaYB;
     static float pasos,xInccrementodda,yIncrementodda;
     public LineaDDA() {
-      JFrame frame=new JFrame();
       
-      Canvas canvas=new LineaDDA();
-      canvas.setSize(500,500);
-      frame.add(canvas);
-      frame.setVisible(true);
+      
     }
     public static void main(String[] args) {
         while(true){
@@ -40,7 +36,13 @@ public class LineaDDA extends Canvas {
             incE=2*deltaYB;
             incNE=(2*deltaYB)-(2*deltaXB);
             d=(2*deltaYB)-(deltaXB);
-            LineaDDA app=new LineaDDA();
+            JFrame frame=new JFrame();
+            frame.setBounds(500, 500,500, 500);
+            
+            Canvas canvas=new LineaDDA();
+            canvas.setSize(500,500);
+            frame.add(canvas);
+            frame.setVisible(true);
         }
     }
     public void paint(Graphics g){
@@ -69,6 +71,7 @@ public class LineaDDA extends Canvas {
         System.out.println("ingrese:");
         x1=sn.nextInt();
         x2=sn.nextInt();
+        System.out.println("ingrese x,y final");
         y1=sn.nextInt();
         y2=sn.nextInt();
     }
