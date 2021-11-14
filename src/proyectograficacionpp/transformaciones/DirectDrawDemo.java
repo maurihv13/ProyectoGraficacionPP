@@ -47,6 +47,9 @@ class DirectDrawDemo extends JPanel{
         repaint();
     }
 
+    public void limpiarPant(){
+        this.fillCanvas(Color.white);
+    }
     
     public void bresenham(Circunferencia cir, Color c){
         Punto centro = cir.centro;
@@ -123,6 +126,21 @@ class DirectDrawDemo extends JPanel{
            //  
         }
     }
+    
+    public void triangulo(Triangulo t, Color c){
+        Linea[] lineas = t.getLineas();
+        for(Linea l : lineas){
+            this.lineaAlg(l, c);
+        }
+    }
+    
+    public void cuadrado(Cuadrado t, Color c){
+        Linea[] lineas = t.getLineas();
+        for(Linea l : lineas){
+            this.lineaAlg(l, c);
+        }
+    }
+    
     private void dibujarPunto(int posx, int posy, int c){
         int w,h;
         w = canvas.getWidth(); h = canvas.getHeight();

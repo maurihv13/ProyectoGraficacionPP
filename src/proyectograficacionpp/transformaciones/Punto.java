@@ -26,7 +26,7 @@ public class Punto {
     }
     
     public void rotacion(double sen, double cos, int Tx, int Ty){
-        x = (int) Math.round(x * cos + y * sen - Tx * cos - Ty * sen + Tx); 
-        y = (int) Math.round(-x * sen + y * cos + Tx * sen - Ty * cos + Ty);
+        x = (int) Math.round(x * cos - y * sen); 
+        y = (int) Math.round(x * sen + y * cos);
     }
 }

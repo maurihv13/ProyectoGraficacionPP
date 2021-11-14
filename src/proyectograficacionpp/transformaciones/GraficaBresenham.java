@@ -50,7 +50,8 @@ public class GraficaBresenham {
         //circ.acomodarPuntoEsc();
         panel.bresenham(circ, c);
         
-        Punto p1, p2;
+        /*   Pruebas con transformaciones   */
+        Punto p1, p2, p3, p4;
         p1 = new Punto (152,235);
         p2 = new Punto (237,145);
         Linea l = new Linea(p1, p2);
@@ -71,5 +72,42 @@ public class GraficaBresenham {
         
         l.rotacion(-12);
         panel.lineaAlg(l, c);
+        
+        c = Color.GREEN;
+        
+        /*   Pruebas con triangulos   */
+        p1 = new Punto (170,69);
+        p2 = new Punto (80,269);        
+        p3 = new Punto (53,142);
+        
+        Triangulo trian = new Triangulo(p1, p2, p3);
+        
+        panel.triangulo(trian, c);
+        
+        trian.rotacion(15);
+        panel.triangulo(trian, c);
+        
+        trian.escalacion(1.5f,1.5f);
+        panel.triangulo(trian, c);
+        
+        trian.translacion(154, 24);
+        panel.triangulo(trian, c);
+        
+        /*   Pruebas con cuadrados   */
+        p4 = new Punto(203,178);
+        int largoLado = 100;
+        Cuadrado cuad = new Cuadrado(p4, largoLado);
+        c = Color.MAGENTA;
+        panel.limpiarPant();
+        
+        panel.cuadrado(cuad, c);
+        
+        cuad.escalacion(1.5f,1.5f);
+        panel.cuadrado(cuad, c);
+        
+        cuad.rotacion(45);
+        panel.cuadrado(cuad, c);
+        
+        
     }
 }
