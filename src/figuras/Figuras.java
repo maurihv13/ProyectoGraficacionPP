@@ -5,6 +5,7 @@
  */
 package figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -26,11 +27,11 @@ public class Figuras {
     }
     
     public static void lineDDA(int x1,int y1,int x2,int y2){
-        linea= new LineaDDA();
+        //linea= new LineaDDA();
        //Graphics g=null;
         //linea.lineaDDA(x1, y1, x2, y2);
         //linBr.bresenham(g, x2, y2, x1, y1);
-        lnE= new LineaAlgoEcuacion(x1, x2, y1, y2);
+        lnE= new LineaAlgoEcuacion(x1, x2, y1, y2,Color.BLUE);
         
     }
     public static void main(String[] args) {
