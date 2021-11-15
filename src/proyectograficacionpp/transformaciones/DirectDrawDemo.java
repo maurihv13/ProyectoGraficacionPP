@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class DirectDrawDemo extends JPanel{
+public class DirectDrawDemo extends JPanel{
     private BufferedImage canvas;
     public DirectDrawDemo(int width, int height) {
         
