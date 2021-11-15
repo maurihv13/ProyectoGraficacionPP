@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * 
+ 
  */
 package figuras;
 
@@ -17,7 +16,6 @@ public class LineaDDA extends Canvas {
     private int x1,x2,y1,y2,incE,incNE,d,deltaXB,deltaYB;
     static float pasos,xInccrementodda,yIncrementodda;
     public LineaDDA() {
-      
       
     }
     public void lineaDDA(int x1,int y1,int x2,int y2) {
@@ -43,7 +41,6 @@ public class LineaDDA extends Canvas {
             incNE=(2*deltaYB)-(2*deltaXB);
             d=(2*deltaYB)-(deltaXB);
             
-            
         }
     }
     public void paint(Graphics g){
@@ -56,7 +53,7 @@ public class LineaDDA extends Canvas {
         y1dda=y1;
         cX1=x1;
         cY1=y1;
-        
+        /**
         while(i<pasos){
             g.setColor(Color.blue);
             g.drawLine(x1dda,y1dda,x1dda,y1dda);
@@ -65,6 +62,18 @@ public class LineaDDA extends Canvas {
             x1dda=Math.round(cX1);
             y1dda=Math.round(cY1);
             i++;
+        }*/
+        
+        while(xb<=x2){
+            g.setColor(Color.RED);
+            g.drawLine(xb, yb, xb, yb);
+            if(d<=0){
+                d += incE;
+            }else{
+                d += incE;
+                yb++;
+            }
+            xb++;
         }
     }
     /*public static void puntoInicial(){

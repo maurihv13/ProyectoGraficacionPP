@@ -5,6 +5,8 @@
  */
 package figuras;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,14 +16,22 @@ import java.util.Scanner;
  */
 public class Figuras {
    static LineaDDA  linea;
-    private static int x1,x2,y1,y2,x3,y3;
+   static BresenhamLinea linBr;
+   static LineaAlgoEcuacion lnE;
+   private static int x1,x2,y1,y2,x3,y3;
     public Figuras() {
          linea= new LineaDDA();
+         linBr=new BresenhamLinea();
+         //lnE= new LineaAlgoEcuacion(x1, x1, y1, y1);
     }
     
     public static void lineDDA(int x1,int y1,int x2,int y2){
         linea= new LineaDDA();
-        linea.lineaDDA(x1, y1, x2, y2);
+       //Graphics g=null;
+        //linea.lineaDDA(x1, y1, x2, y2);
+        //linBr.bresenham(g, x2, y2, x1, y1);
+        lnE= new LineaAlgoEcuacion(x1, x2, y1, y2);
+        
     }
     public static void main(String[] args) {
          Scanner sn=new Scanner(System.in);
@@ -42,9 +52,9 @@ public class Figuras {
         
         pos.add(x3);
         pos.add(y3);
-        //cuadrilatero(pos);
+        cuadrilatero(pos);
         //lineDDA(x1,y1,x2,y2);
-        triangulo(pos);
+        // triangulo(pos);
         
     }
     

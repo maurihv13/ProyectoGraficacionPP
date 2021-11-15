@@ -14,11 +14,16 @@ import javax.swing.JFrame;
  */
 public class LineaAlgoEcuacion extends JFrame{
     private static int x0,x1,y0,y1;
-    public LineaAlgoEcuacion(){
+    public LineaAlgoEcuacion(int x0,int x1,int y0,int y1){
+        this.x0=x0;
+        this.x1=x1;
+        this.y0=y0;
+        this.y1=y1;
         this.setBounds(500, 500, 400, 300);
         setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    /*
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         System.out.println("ingrese:");
@@ -31,7 +36,7 @@ public class LineaAlgoEcuacion extends JFrame{
         LineaAlgoEcuacion ap=new LineaAlgoEcuacion();
         ap.setVisible(true);
         
-    }
+    }*/
     public void paint(Graphics g){
         int dx=x1-x0;
         int dy=y1-y0;
