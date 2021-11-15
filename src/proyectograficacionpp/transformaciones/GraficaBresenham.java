@@ -100,13 +100,14 @@ public class GraficaBresenham {
         c = Color.MAGENTA;
         panel.limpiarPant();
         
+        
+        Linea l1 = new Linea(new Punto(10,50),new Punto(10,90));
+        
+        panel.lineaAlg(l1, c);
+        
         panel.cuadrado(cuad, c);
         
-        cuad.escalacion(1.5f,1.5f);
-        panel.cuadrado(cuad, c);
         
-        cuad.rotacion(45);
-        panel.cuadrado(cuad, c);
         
         
     }
