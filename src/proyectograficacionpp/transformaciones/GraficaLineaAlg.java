@@ -6,7 +6,6 @@
 package proyectograficacionpp.transformaciones;
 
 /**
- *
  * @author MAURICIO
  */
 

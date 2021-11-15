@@ -1,8 +1,7 @@
 /*
  * 
-* 
  */
-package figuras;
+package proyectograficacionpp.figuras;
 
 import java.awt.Color;
 import java.awt.Graphics;
