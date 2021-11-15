@@ -46,7 +46,7 @@ public class LineaAlgoEcuacion extends JFrame{
     public void aniadir(){
         JPanel pan= new JPanel();
         this.add(pan);
-        this.pack();
+        //this.pack();
         
     }
     public void paint(Graphics g){
@@ -71,5 +71,10 @@ public class LineaAlgoEcuacion extends JFrame{
         }
     }
     
-    
+    public void setVars(int x0,int x1,int y0,int y1){
+        this.x0=x0;
+        this.x1=x1;
+        this.y0=y0;
+        this.y1=y1;
+    }
 }

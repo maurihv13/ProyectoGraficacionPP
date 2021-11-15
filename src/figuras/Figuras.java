@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package figuras;
-
+//import proyectograficacionpp.transformaciones.DirectDrawDemo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,14 +12,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
  * @author Fred
  */
 public class Figuras {
    static LineaDDA  linea;
    static BresenhamLinea linBr;
    static LineaAlgoEcuacion lnE;
-   private static int x1,x2,y1,y2,x3,y3;
+   private static int x1,x2,y1,y2,x3,y3,nV;
+   
+   //static DirectDrawDemo d;
+   //static Linea l;
     public Figuras() {
          linea= new LineaDDA();
          linBr=new BresenhamLinea();
@@ -31,7 +33,12 @@ public class Figuras {
        //Graphics g=null;
         //linea.lineaDDA(x1, y1, x2, y2);
         //linBr.bresenham(g, x2, y2, x1, y1);
-        lnE= new LineaAlgoEcuacion(x1, x2, y1, y2,Color.BLUE);
+        if(nV==0){
+           lnE= new LineaAlgoEcuacion(x1, x2, y1, y2,Color.BLUE); 
+        }else{
+           lnE.setVars(x1, x2, y1, y2);
+        }
+        
         
     }
     public static void main(String[] args) {
@@ -65,7 +72,9 @@ public class Figuras {
          pyIzq=(int)posisiones.get(1);
          pxDer=(int)posisiones.get(2);
          pyDer=(int)posisiones.get(3);
+         nV=0;
          lineDDA(x1Izq,pyIzq,pxDer,pyIzq);
+         nV=1;
          lineDDA(x1Izq,pyIzq,x1Izq,pyDer);
          lineDDA(x1Izq, pyDer, pxDer, pyDer);
          lineDDA(pxDer, pyDer,x1Izq,pyIzq);
