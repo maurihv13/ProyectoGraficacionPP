@@ -109,6 +109,46 @@ public class DirectDrawDemo extends JPanel{
         int dx = (x1-x0);
         int dy = (y1-y0);
         float m=0,b=0;
+        m=(float)dy/(float)dx;
+        b=y0-m*x0;
+        if(Math.abs(dx)>Math.abs(dy)){
+            if(x1>x0){
+                dx=1;
+            }else{
+                dx=-1;
+            }
+            
+            while(x0!=x1){
+                x0 += dx;
+                y0 = Math.round(m*x0+b);
+                dibujarPunto(x0,y0,color);
+            }
+        }else{
+            if(y1>y0){
+                dy=1;
+            }else{
+                dy=-1;
+            }
+            while(y0!=y1){
+                y0 += dy;
+                x0 = Math.round((y0-b)/m);
+                dibujarPunto(x0,y0,color);
+            }
+        }
+    }
+    
+    public void lineaAlgOrg(Linea l, Color c){
+        Punto p0, p1;
+        int x0,y0,x1,y1;
+        int color = c.getRGB();
+        p0 = l.puntos[0];
+        p1 = l.puntos[1];
+        x0 = p0.x; y0 = p0.y;
+        x1 = p1.x; y1 = p1.y; 
+        //modifica para escalacion
+        int dx = (x1-x0);
+        int dy = (y1-y0);
+        float m=0,b=0;
         if(dx!=0){
             m=(float)dy/(float)dx;
             b=y0-m*x0;
@@ -125,6 +165,17 @@ public class DirectDrawDemo extends JPanel{
             }
            //  
         }
+    }
+    
+    public void lineaDDA(Linea l, Color c){
+        Punto p0, p1;
+        int x0,y0,x1,y1;
+        int color = c.getRGB();
+        p0 = l.puntos[0];
+        p1 = l.puntos[1];
+        x0 = p0.x; y0 = p0.y;
+        x1 = p1.x; y1 = p1.y; 
+        
     }
     
     public void triangulo(Triangulo t, Color c){
