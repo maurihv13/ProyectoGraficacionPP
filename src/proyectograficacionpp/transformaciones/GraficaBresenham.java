@@ -107,7 +107,5 @@ public class GraficaBresenham {
         
         cuad.rotacion(45);
         panel.cuadrado(cuad, c);
-        
-        
     }
 }
