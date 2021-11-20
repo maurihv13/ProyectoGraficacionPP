@@ -28,8 +28,6 @@ public class LineaDDA extends Canvas {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         while(true){
             int deltaX,deltaY;
-            //puntoInicial();
-            
             deltaX=Math.abs(x2-x1);
             deltaY=Math.abs(y2-y1);
             pasos=comparaciondda(deltaX,deltaY);
