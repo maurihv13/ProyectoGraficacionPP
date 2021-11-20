@@ -23,7 +23,7 @@ public class Figuras extends JFrame{
    private static int x1,x2,y1,y2,x3,y3,nV;
    static Punto p;
    static Linea l;
-   static DirectDrawDemo d;
+
    static JPanel panelDibujo;
    //static Linea l;
     public Figuras() {
