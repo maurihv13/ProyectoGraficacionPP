@@ -187,6 +187,13 @@ class DirectDrawDemo extends JPanel{
         }
     }
     
+    public void rectangulo(Rectangulo t, Color c){
+        Linea[] lineas = t.getLineas();
+        for(Linea l : lineas){
+            this.lineaDDA(l, c);
+        }
+    }
+    
     private void dibujarPunto(int posx, int posy, int c){
         int w,h;
         w = canvas.getWidth(); h = canvas.getHeight();
