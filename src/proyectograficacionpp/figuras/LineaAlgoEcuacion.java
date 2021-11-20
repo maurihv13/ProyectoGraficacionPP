@@ -28,20 +28,6 @@ public class LineaAlgoEcuacion extends JFrame{
         aniadir();
     }
     
-    /*
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("ingrese:");
-        x0=sc.nextInt();
-        y0=sc.nextInt();
-        System.out.println("ingrese 3");
-        x1=sc.nextInt();
-        y1=sc.nextInt();
-        System.out.println("ingrese:");
-        LineaAlgoEcuacion ap=new LineaAlgoEcuacion();
-        ap.setVisible(true);
-        
-    }*/
     public void aniadir(){
         JPanel pan= new JPanel();
         this.add(pan);

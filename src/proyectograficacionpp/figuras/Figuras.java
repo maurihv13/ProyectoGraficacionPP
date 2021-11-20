@@ -10,11 +10,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * @author Fred
  */
-public class Figuras {
+public class Figuras extends JFrame{
    static LineaDDA  linea;
    static BresenhamLinea linBr;
    static LineaAlgoEcuacion lnE;
@@ -22,19 +24,22 @@ public class Figuras {
    static Punto p;
    static Linea l;
    static DirectDrawDemo d;
+   static JPanel panelDibujo;
    //static Linea l;
     public Figuras() {
-         linea= new LineaDDA();
+         //linea= new LineaDDA();
          linBr=new BresenhamLinea();
          //lnE= new LineaAlgoEcuacion(x1, x1, y1, y1);
-         d= new DirectDrawDemo(700, 700);
+         //d= new DirectDrawDemo(700, 700);
+         this.setBounds(400, 400, 600, 600);
+         panelDibujo=new JPanel();
+         this.add(panelDibujo);
+         this.setVisible(true);
+         
     }
     
     public static void lineDDA(int x1,int y1,int x2,int y2){
-        //linea= new LineaDDA();
-       //Graphics g=null;
-        //linea.lineaDDA(x1, y1, x2, y2);
-        //linBr.bresenham(g, x2, y2, x1, y1);
+       
         /*
         if(nV==0){
            lnE= new LineaAlgoEcuacion(x1, x2, y1, y2,Color.BLUE); 
@@ -42,18 +47,21 @@ public class Figuras {
            lnE.setVars(x1, x2, y1, y2);
         }
         */
-        d.lineaAlg(l, Color.BLUE);
+        Graphics g=panelDibujo.getGraphics();
+        linBr.bresenham(g, x2, y2, x1, y1);
+        //d.lineaAlg(l, Color.BLUE);
         
     }
     public static void main(String[] args) {
+        Figuras f=new Figuras();
          Scanner sn=new Scanner(System.in);
-        System.out.println("ingrese:");
+        System.out.println("ingrese x y inicial:");
         x1=sn.nextInt();
         x2=sn.nextInt();
         System.out.println("ingrese x,y final");
         y1=sn.nextInt();
         y2=sn.nextInt();
-        System.out.println("x,y");
+        /**System.out.println("x,y");
         x3=sn.nextInt();
         y3=sn.nextInt();
         ArrayList pos=new ArrayList();
@@ -64,8 +72,8 @@ public class Figuras {
         
         pos.add(x3);
         pos.add(y3);
-        cuadrilatero(pos);
-        //lineDDA(x1,y1,x2,y2);
+        cuadrilatero(pos);*/
+        lineDDA(x1,y1,x2,y2);
         // triangulo(pos);
         
     }

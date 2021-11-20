@@ -5,6 +5,7 @@
  */
 package proyectograficacionpp.figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 
@@ -15,14 +16,11 @@ import javax.swing.JFrame;
 public class BresenhamLinea extends JFrame{
    private int x0,x1,y0,y1,incE,incNE,d,deltaXB,deltaYB;
     public BresenhamLinea(){
-        this.setBounds(600, 600, 600, 600);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         BresenhamLinea l=new BresenhamLinea();
         l.bresenham(null,54,66,222,333);
-    }
+    }*/
     
     public void algoritmo(int x0,int y0,int x1,int y1){
         int dx,dy,contad,pasox,pasoy,x,y,p,incE,incNE;
@@ -98,7 +96,7 @@ public class BresenhamLinea extends JFrame{
         }
         x = x0;
         y = y0;
-
+        g.setColor(Color.RED);
         g.drawLine(x0, y0, x0, y0);/* se cicla hasta llegar al extremo de la línea */ 
         if (dx > dy) {
             p = 2 * dy - dx;
