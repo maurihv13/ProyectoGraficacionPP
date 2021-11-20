@@ -168,27 +168,62 @@ public class DirectDrawDemo extends JPanel{
     }
     
     public void lineaDDA(Linea l, Color c){
-        Punto p0, p1;
-        int x0,y0,x1,y1;
+        int deltaX,deltaY;
+        int x1,y1,x2,y2;
+        Punto p1,p2;
         int color = c.getRGB();
-        p0 = l.puntos[0];
-        p1 = l.puntos[1];
-        x0 = p0.x; y0 = p0.y;
-        x1 = p1.x; y1 = p1.y; 
+        p1 = l.puntos[0]; p2 = l.puntos[1];
+        x1 = p1.x; y1 = p1.y;
+        x2 = p2.x; y2 = p2.y;
         
+        deltaX = Math.abs(x2-x1);
+        deltaY = Math.abs(y2-y1);
+        
+        float pasos = comparaciondda(deltaX,deltaY);
+        float xIncrementodda = deltaX/pasos;
+        float yIncrementodda = deltaY/pasos;
+        /*   Correcion para sentido de lineas   */
+        if(x1>x2) xIncrementodda *= -1;
+        if(y1>y2) yIncrementodda *= -1;
+        int i,x1dda,y1dda;
+        float cX1,cY1;
+        i=0;
+        x1dda= x1;
+        y1dda=y1;
+        cX1=x1;
+        cY1=y1;
+        
+        while(i<pasos){
+            dibujarPunto(x1dda,y1dda,color);
+            cX1=cX1 +xIncrementodda;
+            cY1=cY1 +yIncrementodda;
+            x1dda=Math.round(cX1);
+            y1dda=Math.round(cY1);
+            i++;
+        }
+    }
+    
+    private int comparaciondda(int delY,int delX){
+        int res;
+        if(delY>delX){
+            res=delY;
+        }else{
+            res=delX;
+        }
+        return res;
     }
     
     public void triangulo(Triangulo t, Color c){
         Linea[] lineas = t.getLineas();
         for(Linea l : lineas){
-            this.lineaAlg(l, c);
+            this.lineaDDA(l, c);
         }
     }
     
     public void cuadrado(Cuadrado t, Color c){
         Linea[] lineas = t.getLineas();
         for(Linea l : lineas){
-            this.lineaAlg(l, c);
+            this.lineaDDA(l, c);
         }
     }
     
