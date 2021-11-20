@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,7 +18,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class DirectDrawDemo extends JPanel{
+public class DirectDrawDemo extends JPanel{
     private BufferedImage canvas;
     public DirectDrawDemo(int width, int height) {
         
