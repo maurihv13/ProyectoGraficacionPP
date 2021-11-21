@@ -6,16 +6,19 @@
 package proyectograficacionpp.figuras;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *aun no funciona
  * @author Fred
  */
-public class BresenhamLinea extends JFrame{
+public class BresenhamLinea extends JPanel{
    private int x0,x1,y0,y1,incE,incNE,d,deltaXB,deltaYB;
-    public BresenhamLinea(){
+    public BresenhamLinea(int ancho,int alto){
+        Dimension dim= new Dimension(ancho, alto);
+        this.setPreferredSize(dim);
     }
     /*public static void main(String[] args) {
         BresenhamLinea l=new BresenhamLinea();
@@ -87,8 +90,7 @@ public class BresenhamLinea extends JFrame{
         } else {
             stepy = 1;
         }
-        if (dx
-                < 0) {
+        if (dx < 0) {
             dx = -dx;
             stepx = -1;
         } else {
@@ -110,7 +112,14 @@ public class BresenhamLinea extends JFrame{
                     y = y + stepy;
                     p = p + incNE;
                 }
+                x0=x;
+                y0=y;
                 g.drawLine(x0, y0, x0, y0);
+                System.out.println("x0="+x0+" y0="+y0);
+                g.drawLine(x0+1, y0, x0, y0);
+                g.drawLine(x0-1, y0, x0, y0);
+                g.drawLine(x0, y0+1, x0, y0);
+                g.drawLine(x0, y0-1, x0, y0);
             }
         } else {
             p = 2 * dx - dy;
@@ -124,7 +133,15 @@ public class BresenhamLinea extends JFrame{
                     x = x + stepx;
                     p = p + incNE;
                 }
+                x0=x;
+                y0=y;
                 g.drawLine(x0, y0, x0, y0);
+                System.out.println("x0="+x0+" y0="+y0);
+                g.drawLine(x0+1, y0, x0, y0);
+                g.drawLine(x0-1, y0, x0, y0);
+                g.drawLine(x0, y0+1, x0, y0);
+                g.drawLine(x0, y0-1, x0, y0);
+                
             }
         }
     }
