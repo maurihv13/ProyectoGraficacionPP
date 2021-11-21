@@ -20,10 +20,14 @@ import javax.swing.JPanel;
 
 public class DirectDrawDemo extends JPanel{
     private BufferedImage canvas;
+    private int grosor;
+    private boolean esSegmentado;
     public DirectDrawDemo(int width, int height) {
         
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         fillCanvas(Color.WHITE);
+        grosor=1; //esto se cambiara con un set despues
+        esSegmentado=false;
     }
 
     public Dimension getPreferredSize() {
@@ -121,6 +125,7 @@ public class DirectDrawDemo extends JPanel{
             while(x0!=x1){
                 x0 += dx;
                 y0 = Math.round(m*x0+b);
+                
                 dibujarPunto(x0,y0,color);
             }
            //  
@@ -197,11 +202,35 @@ public class DirectDrawDemo extends JPanel{
     
     private void dibujarPunto(int posx, int posy, int c){
         int w,h;
+        int aux=1; //aniade a la derech izquierda
         w = canvas.getWidth(); h = canvas.getHeight();
         if ((posx > 0) && (posy > 0)){
             if(posx < w && posy < h){
-               canvas.setRGB(posx, posy, c); 
+                
+                canvas.setRGB(posx, posy, c); 
+                int grosoVar=grosor;
+                while(grosoVar!=1){       //aumentamos el ancho de la linea
+                    canvas.setRGB(posx+aux, posy, c);
+                    canvas.setRGB(posx, posy+aux, c);
+                    canvas.setRGB(posx-aux, posy, c); 
+                    canvas.setRGB(posx, posy-aux, c);
+                    canvas.setRGB(posx+aux, posy-aux, c);
+                    canvas.setRGB(posx-aux, posy-aux, c);
+                    canvas.setRGB(posx-aux, posy+aux, c);
+                    canvas.setRGB(posx+aux, posy+aux, c);
+                    aux++;
+                    grosoVar--;
+                }
             } 
         }
     }
+
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }
+
+    public void setEsSegmentado(boolean esSegmentado) {
+        this.esSegmentado = esSegmentado;
+    }
+    
 }

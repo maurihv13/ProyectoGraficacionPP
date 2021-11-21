@@ -331,6 +331,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
         String coloSelec=(String) listColores.getSelectedItem();
         col=coloSelec;
+        
         //System.out.println(col+" "); //si selecciona bien
     }//GEN-LAST:event_listColoresActionPerformed
 
@@ -338,7 +339,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         int gros=Integer.parseInt((String)jlistGrosor.getSelectedItem());
         if(gros>0){
             grosor=gros;
-            
+            dir.setGrosor(grosor);
         }
     }//GEN-LAST:event_jlistGrosorActionPerformed
 

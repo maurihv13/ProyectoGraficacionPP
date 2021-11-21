@@ -30,15 +30,12 @@ public class Figuras extends JFrame {
     //static Linea l;
 
     public Figuras() {
-//         linBr=new BresenhamLinea();
-//         this.setBounds(400, 400, 600, 600);
-         linBr=new BresenhamLinea(600,600);
-         
+         //linBr=new BresenhamLinea(600,600);
+         //this.add(linBr);
 //         this.add(panelDibujo);
-//         this.setVisible(true);
-        //direct = new DirectDrawDemo(500, 500);
-        //this.add(direct);
-        this.add(linBr);
+        direct = new DirectDrawDemo(500, 500);
+        this.add(direct);
+        
         this.pack();
         this.setVisible(true);
         this.setResizable(false);
@@ -50,33 +47,36 @@ public class Figuras extends JFrame {
         p1=new Punto(x1, y1);
         p2= new Punto(x2, y2);
         l=new Linea(p1, p2);
-        Graphics g=linBr.getGraphics();
-        linBr.bresenham(g, x1, y1, x2, y2);
         
-        //direct.lineaAlg(l, Color.BLUE); //tienes que minimizar y maximisar la pagina
+//        Graphics g=linBr.getGraphics();
+//        linBr.bresenham(g, x1, y1, x2, y2);
+        direct.setGrosor(4);
+        direct.lineaAlg(l, Color.ORANGE); //tienes que minimizar y maximisar la pagina
     }
 
     public static void main(String[] args) {
         Figuras f = new Figuras();
+        /*
         Scanner sn = new Scanner(System.in);
+        
         System.out.println("ingrese x y inicial:");
         x1 = sn.nextInt();
         y1 = sn.nextInt();
         System.out.println("ingrese x,y final");
         x2 = sn.nextInt();
         y2 = sn.nextInt();
-        
-        
-          System.out.println("x3,y3"); x3=sn.nextInt(); y3=sn.nextInt();
-          ArrayList pos=new ArrayList(); pos.add(x1); pos.add(y1); pos.add(x2);
-          pos.add(y2);
-         
-         pos.add(x3); pos.add(y3);
+        */
+        x1=24;y1=43;x2=222;y2=333;
+//          System.out.println("x3,y3"); x3=sn.nextInt(); y3=sn.nextInt();
+//          ArrayList pos=new ArrayList(); pos.add(x1); pos.add(y1); pos.add(x2);
+//          pos.add(y2);
+//         
+//         pos.add(x3); pos.add(y3);
         //cuadrilatero(pos);
          
         
-        //lineDDA(x1, y1, x2, y2);
-         triangulo(pos);
+        lineDDA(x1, y1, x2, y2);
+         //triangulo(pos);
 
     }
 
