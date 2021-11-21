@@ -50,8 +50,10 @@ public class Figuras extends JFrame {
         
 //        Graphics g=linBr.getGraphics();
 //        linBr.bresenham(g, x1, y1, x2, y2);
-        direct.setGrosor(2);
-        direct.lineaAlg(l, Color.ORANGE); //tienes que minimizar y maximisar la pagina
+        direct.setGrosor(3);
+        direct.setEsSegmentado(true);
+        //direct.setCantSeparad(1);
+        direct.lineaDDA(l, Color.BLACK); //tienes que minimizar y maximisar la pagina
     }
 
     public static void main(String[] args) {

@@ -20,13 +20,14 @@ import javax.swing.JPanel;
 
 public class DirectDrawDemo extends JPanel{
     private BufferedImage canvas;
-    private int grosor;
+    private int grosor,cantSeparad;
     private boolean esSegmentado;
     public DirectDrawDemo(int width, int height) {
         
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         fillCanvas(Color.WHITE);
         grosor=1; //esto se cambiara con un set despues
+        cantSeparad=1;
         esSegmentado=false;
     }
 
@@ -158,9 +159,29 @@ public class DirectDrawDemo extends JPanel{
         cX1=x1;
         cY1=y1;
         
+        boolean seDibuja=esSegmentado; //definimos para intercalar
+        int separado=cantSeparad;
         while(i<pasos){
             
-            dibujarPunto(x1dda,y1dda,color);
+            if(esSegmentado){
+                if(seDibuja){
+                    dibujarPunto(x1dda,y1dda,color);
+                    seDibuja=!seDibuja; //cambia a false o true
+                    separado--;
+                }else{
+                    if(separado==0){
+                        seDibuja=!seDibuja;
+                        separado=cantSeparad; //denuevo 
+                    }else{
+                        separado--;
+                    }
+                    
+                }
+                
+            }else{
+                dibujarPunto(x1dda,y1dda,color);
+            }
+            
             
             cX1=cX1 +xIncrementodda;
             cY1=cY1 +yIncrementodda;
@@ -213,13 +234,14 @@ public class DirectDrawDemo extends JPanel{
                 int grosoVar=grosor;
                 while(grosoVar!=1){       //aumentamos el ancho de la linea
                     canvas.setRGB(posx+aux, posy, c);
-                    canvas.setRGB(posx, posy+aux, c);
-                    canvas.setRGB(posx-aux, posy, c); 
-                    canvas.setRGB(posx, posy-aux, c);
-                    canvas.setRGB(posx+aux, posy-aux, c);
-                    canvas.setRGB(posx-aux, posy-aux, c);
-                    canvas.setRGB(posx-aux, posy+aux, c);
-                    canvas.setRGB(posx+aux, posy+aux, c);
+                    canvas.setRGB(posx-aux, posy, c);
+//                    
+//                    canvas.setRGB(posx, posy+aux, c);
+//                    canvas.setRGB(posx, posy-aux, c);
+//                    canvas.setRGB(posx+aux, posy-aux, c);
+//                    canvas.setRGB(posx-aux, posy-aux, c);
+//                    canvas.setRGB(posx-aux, posy+aux, c);
+//                    canvas.setRGB(posx+aux, posy+aux, c);
                     aux++;
                     grosoVar--;
                 }
@@ -233,6 +255,10 @@ public class DirectDrawDemo extends JPanel{
 
     public void setEsSegmentado(boolean esSegmentado) {
         this.esSegmentado = esSegmentado;
+    }
+
+    public void setCantSeparad(int cantSeparad) {
+        this.cantSeparad = cantSeparad;
     }
     
 }

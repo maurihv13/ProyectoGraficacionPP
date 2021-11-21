@@ -70,7 +70,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton1 = new javax.swing.JToggleButton();
         panelDibujo = new javax.swing.JPanel();
         btnLinea = new javax.swing.JButton();
         btnCuadrado = new javax.swing.JButton();
@@ -78,8 +77,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
         btnRectan = new javax.swing.JButton();
         listColores = new javax.swing.JComboBox<>();
         jlistGrosor = new javax.swing.JComboBox<>();
-
-        jToggleButton1.setText("jToggleButton1");
+        jComCantSegmento = new javax.swing.JComboBox<>();
+        checkSegmentado = new java.awt.Checkbox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +142,15 @@ public class pruebaDibujo extends javax.swing.JFrame {
             }
         });
 
+        jComCantSegmento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4","5","6" }));
+        jComCantSegmento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComCantSegmentoActionPerformed(evt);
+            }
+        });
+
+        checkSegmentado.setLabel("segmentado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,24 +159,27 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLinea)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRectan)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addComponent(btnLinea)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnRectan))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(26, 26, 26)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnTriangulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCuadrado)
-                        .addGap(37, 37, 37))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCuadrado)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,11 +188,15 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTriangulo)
-                    .addComponent(btnCuadrado))
-                .addGap(33, 33, 33)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCuadrado)
+                    .addComponent(btnTriangulo))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLinea)
                     .addComponent(btnRectan))
@@ -343,6 +358,17 @@ public class pruebaDibujo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jlistGrosorActionPerformed
 
+    private void jComCantSegmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComCantSegmentoActionPerformed
+        int separ=Integer.parseInt((String)jComCantSegmento.getSelectedItem());
+        boolean separar=checkSegmentado.getState();
+        dir.setCantSeparad(separ); //cambiamos al estado que quieras
+        if(separar){
+            dir.setEsSegmentado(separar); //aqui solo activamos y ya 
+        }else{
+            dir.setEsSegmentado(separar);
+        }
+    }//GEN-LAST:event_jComCantSegmentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -383,7 +409,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnRectan;
     private javax.swing.JButton btnTriangulo;
-    private javax.swing.JToggleButton jToggleButton1;
+    private java.awt.Checkbox checkSegmentado;
+    private javax.swing.JComboBox<String> jComCantSegmento;
     private javax.swing.JComboBox<String> jlistGrosor;
     private javax.swing.JComboBox<String> listColores;
     private javax.swing.JPanel panelDibujo;
