@@ -107,8 +107,9 @@ public class GraficaBresenham {
         
         panel.cuadrado(cuad, c);
         
+        panel.limpiarPant();
         
-        Rectangulo r1 = new Rectangulo(new Punto(10,49), new Punto(74,75));
+        Rectangulo r1 = new Rectangulo(new Punto(30,30), new Punto(140,150));
         panel.rectangulo(r1, c);
         
     }

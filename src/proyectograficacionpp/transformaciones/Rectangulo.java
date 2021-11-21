@@ -26,7 +26,7 @@ public class Rectangulo {
         puntos[0] = new Punto(x0,y0);
         puntos[1] = new Punto(x1,y0);
         puntos[2] = new Punto(x1,y1);
-        puntos[3] = new Punto(x1,y0);
+        puntos[3] = new Punto(x0,y1);
         pivote = new Punto(distX,distY);
     }
     
