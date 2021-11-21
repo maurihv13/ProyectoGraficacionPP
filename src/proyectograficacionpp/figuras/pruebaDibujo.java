@@ -5,6 +5,7 @@
  */
 package proyectograficacionpp.figuras;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.color.ColorSpace;
 import proyectograficacionpp.transformaciones.*;
 /**
@@ -32,7 +33,16 @@ public class pruebaDibujo extends javax.swing.JFrame {
         int y=panelDibujo.getLocation().y;
         int anch=panelDibujo.getSize().width;
         int alt=panelDibujo.getSize().height;
-        dir=new DirectDrawDemo(anch, alt);
+        panelDibujo.setVisible(false);
+        dir = new DirectDrawDemo(anch, alt);
+        dir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelDibujoMouseClicked(evt);
+            }
+        });
+        dir.setBounds(x, y, anch, alt);
+        getContentPane().add(dir);
+        panelDibujo.setBackground(Color.red);
         nroPuntos=0;
         px1=-1;
         px2=-1;
@@ -43,7 +53,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         x4=-1;
         y4=-1;
         grosor=1;
-        panelDibujo.setOpaque(false);
+        //panelDibujo.setOpaque(false);
         //Color.ORANGE;
         col="BLACK";
         listColores.addItem("BLACK");
@@ -276,6 +286,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRectanActionPerformed
 
     private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
+        dir = (DirectDrawDemo)panelDibujo;
         p1=new Punto(px1, py1);
         p2=new Punto(px2, py2);
         p3=new Punto(x3, y3);
@@ -326,6 +337,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 dir.lineaDDA(l, Color.BLACK);
                 break;
         }
+        
     }//GEN-LAST:event_btnLineaActionPerformed
 
     private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
