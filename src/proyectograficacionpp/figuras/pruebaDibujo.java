@@ -102,6 +102,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
         jlblGrosor = new javax.swing.JLabel();
         btnTriangulo = new javax.swing.JButton();
         jlbP1 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        txtFlado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,59 +193,88 @@ public class pruebaDibujo extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setText("limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        txtFlado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFladoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Medida Lado:");
+
+        jButton1.setText("circulo");
+
         javax.swing.GroupLayout pnlBotnLayout = new javax.swing.GroupLayout(pnlBotn);
         pnlBotn.setLayout(pnlBotnLayout);
         pnlBotnLayout.setHorizontalGroup(
             pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotnLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addContainerGap(15, Short.MAX_VALUE)
                         .addComponent(btnTriangulo)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCuadrado))
-                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addComponent(btnLinea)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnRectan))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBotnLayout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jlblGrosor)
-                                .addGroup(pnlBotnLayout.createSequentialGroup()
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jlblP4))
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                                            .addGap(11, 11, 11)
-                                            .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBotnLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLinea)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRectan)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFlado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(pnlBotnLayout.createSequentialGroup()
+                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlblGrosor)
+                            .addGroup(pnlBotnLayout.createSequentialGroup()
+                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jlblP4))
+                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
                                         .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                                                .addComponent(jlblP1)
-                                                .addGap(18, 18, 18))
-                                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                                .addComponent(jlblP2)
-                                                .addGap(18, 18, 18)))
-                                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBotnLayout.createSequentialGroup()
-                                        .addComponent(jlblP3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                            .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(pnlBotnLayout.createSequentialGroup()
+                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
+                                        .addComponent(jlblP1)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                                        .addComponent(jlblP2)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(pnlBotnLayout.createSequentialGroup()
+                                .addComponent(jlblP3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addGap(119, 119, 119))
         );
         pnlBotnLayout.setVerticalGroup(
             pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,15 +305,21 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTriangulo)
                     .addComponent(btnCuadrado)
-                    .addComponent(btnTriangulo))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFlado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLinea)
                     .addComponent(btnRectan))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,7 +329,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -303,7 +342,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -346,7 +385,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
         p2=new Punto(px2, py2);
         p3=new Punto(x3, y3);
         p4=new Punto(x4, y4);
-        cuad=new Cuadrado(p1, 5);//un tamaño de los lados
+        int lado = Integer.parseInt(txtFlado.getText());
+        cuad=new Cuadrado(p1, lado);//un tamaño de los lados
         
         switch (col){
             case "BLACK":   dir.cuadrado(cuad, Color.BLACK);
@@ -367,6 +407,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 dir.cuadrado(cuad, Color.BLACK);
                 break;
         }
+        dir.updateUI();
     }//GEN-LAST:event_btnCuadradoActionPerformed
 
     private void btnRectanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectanActionPerformed
@@ -394,7 +435,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 dir.rectangulo(rect, Color.BLACK); 
                 break;
         }
-        
+        dir.updateUI();
     }//GEN-LAST:event_btnRectanActionPerformed
 
     private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
@@ -423,6 +464,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 dir.triangulo(t, Color.BLACK);
                 break;
         }
+        dir.updateUI();
     }//GEN-LAST:event_btnTrianguloActionPerformed
 
     private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
@@ -449,7 +491,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 dir.lineaDDA(l, Color.BLACK);
                 break;
         }
-        
+        dir.updateUI();
     }//GEN-LAST:event_btnLineaActionPerformed
 
     private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
@@ -486,6 +528,15 @@ public class pruebaDibujo extends javax.swing.JFrame {
             //System.out.println(separar+"");
         }
     }//GEN-LAST:event_checkSegmentadoItemStateChanged
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        dir.limpiarPant();
+        dir.updateUI();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtFladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFladoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFladoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -524,11 +575,14 @@ public class pruebaDibujo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCuadrado;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnRectan;
     private javax.swing.JButton btnTriangulo;
     private java.awt.Checkbox checkSegmentado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComCantSegmento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlbP1;
     private javax.swing.JLabel jlbP2;
     private javax.swing.JLabel jlbP3;
@@ -542,5 +596,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listColores;
     private javax.swing.JPanel panelDibujo;
     private javax.swing.JPanel pnlBotn;
+    private javax.swing.JTextField txtFlado;
     // End of variables declaration//GEN-END:variables
 }

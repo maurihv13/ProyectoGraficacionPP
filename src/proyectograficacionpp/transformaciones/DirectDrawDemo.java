@@ -70,28 +70,28 @@ public class DirectDrawDemo extends JPanel{
         //canvas.setRGB(posx, posy, color); Math.round(()*escY)
         while (y <= x){
             nposx = x + posx; nposy = y + posy;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = y + posy - dif; nposy = x + posx + dif;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = -x + posx; nposy = y + posy;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = -y + posy - dif; nposy = x + posx + dif;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = x + posx; nposy = -y + posy;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = y + posy - dif; nposy = -x + posx + dif;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = -x + posx; nposy = -y + posy;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             nposx = -y + posy - dif; nposy = -x + posx + dif;
-            dibujarPunto(nposx, nposy, color);
+            dibujarPunto(nposx, nposy, color,1);
             
             e = e + 2*y + 1;
             y += 1;
@@ -127,7 +127,7 @@ public class DirectDrawDemo extends JPanel{
                 x0 += dx;
                 y0 = Math.round(m*x0+b);
                 
-                dibujarPunto(x0,y0,color);
+                dibujarPunto(x0,y0,color,m);
             }
            //  
         }
@@ -144,6 +144,13 @@ public class DirectDrawDemo extends JPanel{
         
         deltaX = Math.abs(x2-x1);
         deltaY = Math.abs(y2-y1);
+        
+        float m;
+        if(deltaX==0){
+            m = 1000;
+        }else{
+            m = deltaY/deltaX;
+        }
         
         float pasos = comparaciondda(deltaX,deltaY);
         float xIncrementodda = deltaX/pasos;
@@ -165,7 +172,7 @@ public class DirectDrawDemo extends JPanel{
             
             if(esSegmentado){
                 if(seDibuja){
-                    dibujarPunto(x1dda,y1dda,color);
+                    dibujarPunto(x1dda,y1dda,color,m);
                     seDibuja=!seDibuja; //cambia a false o true
                     separado--;
                 }else{
@@ -179,7 +186,7 @@ public class DirectDrawDemo extends JPanel{
                 }
                 
             }else{
-                dibujarPunto(x1dda,y1dda,color);
+                dibujarPunto(x1dda,y1dda,color,m);
             }
             
             
@@ -223,7 +230,7 @@ public class DirectDrawDemo extends JPanel{
         }
     }
     
-    private void dibujarPunto(int posx, int posy, int c){
+    private void dibujarPunto(int posx, int posy, int c, float m){
         int w,h;
         int aux=1; //aniade a la derech izquierda
         w = canvas.getWidth(); h = canvas.getHeight();
@@ -233,9 +240,14 @@ public class DirectDrawDemo extends JPanel{
                 canvas.setRGB(posx, posy, c); 
                 int grosoVar=grosor;
                 while(grosoVar!=1){       //aumentamos el ancho de la linea
-                    canvas.setRGB(posx+aux, posy, c);
-                    canvas.setRGB(posx-aux, posy, c);
-//                    
+                    if(m>1){
+                        canvas.setRGB(posx+aux, posy, c);
+                        canvas.setRGB(posx-aux, posy, c);
+                    }else{
+                        canvas.setRGB(posx, posy+aux, c);
+                        canvas.setRGB(posx, posy-aux, c);
+                    }
+                      
 //                    canvas.setRGB(posx, posy+aux, c);
 //                    canvas.setRGB(posx, posy-aux, c);
 //                    canvas.setRGB(posx+aux, posy-aux, c);
