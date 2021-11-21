@@ -159,7 +159,9 @@ public class DirectDrawDemo extends JPanel{
         cY1=y1;
         
         while(i<pasos){
+            
             dibujarPunto(x1dda,y1dda,color);
+            
             cX1=cX1 +xIncrementodda;
             cY1=cY1 +yIncrementodda;
             x1dda=Math.round(cX1);

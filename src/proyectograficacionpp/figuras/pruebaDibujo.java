@@ -43,7 +43,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         x4=-1;
         y4=-1;
         grosor=1;
-        panelDibujo.setOpaque(false);
+        //panelDibujo.setOpaque(false);
         //Color.ORANGE;
         col="BLACK";
         listColores.addItem("BLACK");
