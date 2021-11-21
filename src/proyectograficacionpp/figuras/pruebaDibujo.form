@@ -36,14 +36,23 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jComCantSegmento" min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="jlistGrosor" min="-2" pref="48" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="listColores" min="-2" pref="75" max="-2" attributes="0"/>
-                              <Component id="checkSegmentado" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblP1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jComCantSegmento" min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="jlistGrosor" min="-2" pref="48" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="listColores" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Component id="checkSegmentado" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jlblP2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblP3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblP4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblGrosor" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -60,33 +69,47 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="listColores" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlistGrosor" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="checkSegmentado" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComCantSegmento" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnCuadrado" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTriangulo" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnLinea" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRectan" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="112" max="32767" attributes="0"/>
-              <Component id="panelDibujo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <Component id="jlblP1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="jlblP2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlblP3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlblP4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="jlblGrosor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="listColores" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlistGrosor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="checkSegmentado" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComCantSegmento" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnCuadrado" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTriangulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnLinea" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRectan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <Component id="panelDibujo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -189,6 +212,31 @@
     <Component class="java.awt.Checkbox" name="checkSegmentado">
       <Properties>
         <Property name="label" type="java.lang.String" value="segmentado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblP1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="p1(x,y):"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblP2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="p2(x,y):"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblP3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="p3(x,y):"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblP4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="p4(x,y):"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblGrosor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="grosor:"/>
       </Properties>
     </Component>
   </SubComponents>
