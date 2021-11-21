@@ -105,7 +105,9 @@ public class pruebaDibujo extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         txtFlado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCirculo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtFradio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,7 +210,14 @@ public class pruebaDibujo extends javax.swing.JFrame {
 
         jLabel1.setText("Medida Lado:");
 
-        jButton1.setText("circulo");
+        btnCirculo.setText("circulo");
+        btnCirculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCirculoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Radio:");
 
         javax.swing.GroupLayout pnlBotnLayout = new javax.swing.GroupLayout(pnlBotn);
         pnlBotn.setLayout(pnlBotnLayout);
@@ -269,8 +278,12 @@ public class pruebaDibujo extends javax.swing.JFrame {
                                 .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlBotnLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnCirculo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFradio, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
@@ -316,7 +329,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
                     .addComponent(btnLinea)
                     .addComponent(btnRectan))
                 .addGap(19, 19, 19)
-                .addComponent(jButton1)
+                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCirculo)
+                    .addComponent(jLabel2)
+                    .addComponent(txtFradio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
                 .addContainerGap())
@@ -444,7 +460,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         p2=new Punto(px2, py2);
         p3=new Punto(x3, y3);
         t =new Triangulo(p1, p2, p3);
-        dir.triangulo(t, Color.red);
          switch (col){
             case "BLACK":   dir.triangulo(t, Color.BLACK);
                         break;
@@ -538,6 +553,32 @@ public class pruebaDibujo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFladoActionPerformed
 
+    private void btnCirculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCirculoActionPerformed
+        p1=new Punto(px1, py1);
+        int radio = Integer.parseInt(txtFradio.getText());
+        Circunferencia circulo = new Circunferencia(p1,radio);
+        switch (col){
+            case "BLACK":  dir.bresenham(circulo, Color.BLACK); 
+                        break;
+            case "ORANGE":  dir.bresenham(circulo, Color.ORANGE);
+                        break;
+            case "RED":  dir.bresenham(circulo, Color.RED);
+                        break;
+            case "BLUE":  dir.bresenham(circulo, Color.BLUE);
+                        break;
+            case "GRAY":  dir.bresenham(circulo, Color.GRAY);
+                        break;
+            case "YELLOW":  dir.bresenham(circulo, Color.YELLOW);
+                        break;    
+            case "GREEN":  dir.bresenham(circulo, Color.GREEN);
+                        break;  
+            default:
+                dir.bresenham(circulo, Color.BLACK); 
+                break;
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnCirculoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -574,15 +615,16 @@ public class pruebaDibujo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCirculo;
     private javax.swing.JButton btnCuadrado;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnRectan;
     private javax.swing.JButton btnTriangulo;
     private java.awt.Checkbox checkSegmentado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComCantSegmento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jlbP1;
     private javax.swing.JLabel jlbP2;
     private javax.swing.JLabel jlbP3;
@@ -597,5 +639,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JPanel panelDibujo;
     private javax.swing.JPanel pnlBotn;
     private javax.swing.JTextField txtFlado;
+    private javax.swing.JTextField txtFradio;
     // End of variables declaration//GEN-END:variables
 }
