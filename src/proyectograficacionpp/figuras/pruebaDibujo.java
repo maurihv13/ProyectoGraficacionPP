@@ -87,6 +87,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
         jlblP3 = new javax.swing.JLabel();
         jlblP4 = new javax.swing.JLabel();
         jlblGrosor = new javax.swing.JLabel();
+        jlbP1 = new javax.swing.JLabel();
+        jlbP2 = new javax.swing.JLabel();
+        jlbP3 = new javax.swing.JLabel();
+        jlbP4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,6 +162,11 @@ public class pruebaDibujo extends javax.swing.JFrame {
         });
 
         checkSegmentado.setLabel("segmentado");
+        checkSegmentado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkSegmentadoItemStateChanged(evt);
+            }
+        });
 
         jlblP1.setText("p1(x,y):");
 
@@ -186,7 +195,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(26, 26, 26)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jlblP1)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,10 +203,27 @@ public class pruebaDibujo extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jlblP2)
-                                .addComponent(jlblP3)
-                                .addComponent(jlblP4)
-                                .addComponent(jlblGrosor))))
+                                .addComponent(jlblGrosor)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jlblP4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jlbP4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jlblP3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jlbP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jlblP1)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jlblP2)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                                        .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnTriangulo)
@@ -209,16 +234,24 @@ public class pruebaDibujo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addComponent(jlblP1)
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblP1)
+                    .addComponent(jlbP1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(jlblP2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlblP3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblP3)
+                            .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlblP4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlblP4)
+                            .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addComponent(jlblGrosor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,9 +270,9 @@ public class pruebaDibujo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLinea)
                             .addComponent(btnRectan))
-                        .addContainerGap(108, Short.MAX_VALUE))
+                        .addContainerGap(111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
         );
@@ -255,16 +288,20 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 case 1: px1=evt.getX();
                         py1=evt.getY();
                         System.out.println(px1 +" "+ py1);
+                        jlbP1.setText("("+""+px1+","+py1+")");
                         break;
                 case 2: px2=evt.getX();
                         py2=evt.getY();
                         System.out.println(px2 +" "+ py2);
+                        jlbP2.setText("("+""+px2+","+py2+")");
                         break;
                 case 3:x3=evt.getX();
                        y3=evt.getY();
+                       jlbP3.setText("("+""+x3+","+y3+")");
                        break;
                 case 4:x4=evt.getX();
                        y4=evt.getY();
+                       jlbP4.setText("("+""+x4+","+y4+")");
                        break;
                 default:
                     break;
@@ -397,14 +434,23 @@ public class pruebaDibujo extends javax.swing.JFrame {
 
     private void jComCantSegmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComCantSegmentoActionPerformed
         int separ=Integer.parseInt((String)jComCantSegmento.getSelectedItem());
-        boolean separar=checkSegmentado.getState();
+        
         dir.setCantSeparad(separ); //cambiamos al estado que quieras
+        //System.out.println(separ+"");
+    }//GEN-LAST:event_jComCantSegmentoActionPerformed
+
+    private void checkSegmentadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkSegmentadoItemStateChanged
+        
+        boolean separar=checkSegmentado.getState();
+        
         if(separar){
             dir.setEsSegmentado(separar); //aqui solo activamos y ya 
+            //System.out.println(separar+"");
         }else{
             dir.setEsSegmentado(separar);
+            //System.out.println(separar+"");
         }
-    }//GEN-LAST:event_jComCantSegmentoActionPerformed
+    }//GEN-LAST:event_checkSegmentadoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -448,6 +494,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JButton btnTriangulo;
     private java.awt.Checkbox checkSegmentado;
     private javax.swing.JComboBox<String> jComCantSegmento;
+    private javax.swing.JLabel jlbP1;
+    private javax.swing.JLabel jlbP2;
+    private javax.swing.JLabel jlbP3;
+    private javax.swing.JLabel jlbP4;
     private javax.swing.JLabel jlblGrosor;
     private javax.swing.JLabel jlblP1;
     private javax.swing.JLabel jlblP2;
