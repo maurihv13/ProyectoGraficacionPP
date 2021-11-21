@@ -5,16 +5,22 @@
  */
 package proyectograficacionpp.figuras;
 import java.awt.Color;
+import java.awt.color.ColorSpace;
 import proyectograficacionpp.transformaciones.*;
 /**
  *
- * @author USUARIO
+ * @author Fred
  */
 public class pruebaDibujo extends javax.swing.JFrame {
     private DirectDrawDemo dir;
-    private Linea l;
+    
     private Punto p1,p2,p3,p4;
-    private int px1,py1,px2,py2,x3,y3,x4,y4,nroPuntos;
+    private int px1,py1,px2,py2,x3,y3,x4,y4,nroPuntos,grosor;
+    private Rectangulo rect;
+    private Cuadrado cuad;
+    private Linea l;
+    private Triangulo t;
+    private Color col;
     
     /**
      * Creates new form pruebaDibujo
@@ -36,6 +42,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         y3=-1;
         x4=-1;
         y4=-1;
+        grosor=1;
         panelDibujo.setOpaque(false);
         
     }
@@ -53,7 +60,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         panelDibujo = new javax.swing.JPanel();
         btnLinea = new javax.swing.JButton();
         btnCuadrado = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnTriangulo = new javax.swing.JButton();
         btnRectan = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
@@ -92,10 +99,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("triangulo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTriangulo.setText("triangulo");
+        btnTriangulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTrianguloActionPerformed(evt);
             }
         });
 
@@ -116,7 +123,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnTriangulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCuadrado)
                         .addGap(37, 37, 37))
@@ -132,7 +139,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(237, 237, 237)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnTriangulo)
                     .addComponent(btnCuadrado))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -170,30 +177,33 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 default:
                     break;
             }
-//            if(px1!=-1){
-//                px2=evt.getX();
-//                py2=evt.getY();
-//                if(px2!=-1){
-//                    x3=evt.getX();
-//                    y3=evt.getY();
-//                    if(x3!=-1){
-//                        x4=evt.getX();
-//                    }
-//                }
-//            }else{}
     }//GEN-LAST:event_panelDibujoMouseClicked
 
     private void btnCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuadradoActionPerformed
-        
+        p1=new Punto(px1, py1);
+        p2=new Punto(px2, py2);
+        p3=new Punto(x3, y3);
+        p4=new Punto(x4, y4);
+        cuad=new Cuadrado(p1, 5);//un tamaño de los lados
     }//GEN-LAST:event_btnCuadradoActionPerformed
 
     private void btnRectanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectanActionPerformed
-        // TODO add your handling code here:
+        p1=new Punto(px1, py1);
+        p2=new Punto(px2, py2);
+        p3=new Punto(x3, y3);
+        p4=new Punto(x4, y4);
+        rect = new Rectangulo(p1, p2); //solo 2 esquinas
+        dir.rectangulo(rect, col.BLACK); //esta variable debo cambiar
     }//GEN-LAST:event_btnRectanActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
+        p1=new Punto(px1, py1);
+        p2=new Punto(px2, py2);
+        p3=new Punto(x3, y3);
+        t =new Triangulo(p1, p2, p3);
+        dir.triangulo(t, Color.red);
+        
+    }//GEN-LAST:event_btnTrianguloActionPerformed
 
     private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
         p1=new Punto(px1, py1);
@@ -241,7 +251,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JButton btnCuadrado;
     private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnRectan;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnTriangulo;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel panelDibujo;
     // End of variables declaration//GEN-END:variables
