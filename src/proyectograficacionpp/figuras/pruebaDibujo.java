@@ -20,7 +20,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private Cuadrado cuad;
     private Linea l;
     private Triangulo t;
-    private Color col;
+    private String col;
     
     /**
      * Creates new form pruebaDibujo
@@ -44,7 +44,21 @@ public class pruebaDibujo extends javax.swing.JFrame {
         y4=-1;
         grosor=1;
         panelDibujo.setOpaque(false);
+        //Color.ORANGE;
+        col="BLACK";
+        listColores.addItem("BLACK");
+        listColores.addItem("RED");
+        listColores.addItem("BLUE");
+        listColores.addItem("GREEN");
+        listColores.addItem("YELLOW");
+        listColores.addItem("GRAY");
+        listColores.addItem("ORANGE");
         
+        jlistGrosor.addItem("1");
+        jlistGrosor.addItem("2");
+        jlistGrosor.addItem("3");
+        jlistGrosor.addItem("4");
+        jlistGrosor.addItem("5");
     }
 
     /**
@@ -62,6 +76,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
         btnCuadrado = new javax.swing.JButton();
         btnTriangulo = new javax.swing.JButton();
         btnRectan = new javax.swing.JButton();
+        listColores = new javax.swing.JComboBox<>();
+        jlistGrosor = new javax.swing.JComboBox<>();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -113,6 +129,20 @@ public class pruebaDibujo extends javax.swing.JFrame {
             }
         });
 
+        listColores.setModel(new javax.swing.DefaultComboBoxModel<>());
+        listColores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listColoresActionPerformed(evt);
+            }
+        });
+
+        jlistGrosor.setModel(new javax.swing.DefaultComboBoxModel<>());
+        jlistGrosor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlistGrosorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,22 +152,32 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnLinea)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRectan)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnTriangulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCuadrado)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnLinea)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRectan)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(237, 237, 237)
+                .addGap(166, 166, 166)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTriangulo)
                     .addComponent(btnCuadrado))
@@ -185,6 +225,26 @@ public class pruebaDibujo extends javax.swing.JFrame {
         p3=new Punto(x3, y3);
         p4=new Punto(x4, y4);
         cuad=new Cuadrado(p1, 5);//un tamaño de los lados
+        
+        switch (col){
+            case "BLACK":   dir.cuadrado(cuad, Color.BLACK);
+                        break;
+            case "ORANGE":  dir.cuadrado(cuad, Color.ORANGE);
+                        break;
+            case "RED":  dir.cuadrado(cuad, Color.RED);
+                        break;
+            case "BLUE":  dir.cuadrado(cuad, Color.BLUE);
+                        break;
+            case "GRAY":  dir.cuadrado(cuad, Color.GRAY);
+                        break;
+            case "YELLOW":  dir.cuadrado(cuad, Color.YELLOW);
+                        break;    
+            case "GREEN":  dir.cuadrado(cuad, Color.GREEN);
+                        break;  
+            default:
+                dir.cuadrado(cuad, Color.BLACK);
+                break;
+        }
     }//GEN-LAST:event_btnCuadradoActionPerformed
 
     private void btnRectanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectanActionPerformed
@@ -193,7 +253,26 @@ public class pruebaDibujo extends javax.swing.JFrame {
         p3=new Punto(x3, y3);
         p4=new Punto(x4, y4);
         rect = new Rectangulo(p1, p2); //solo 2 esquinas
-        dir.rectangulo(rect, col.BLACK); //esta variable debo cambiar
+        switch (col){
+            case "BLACK":  dir.rectangulo(rect, Color.BLACK); 
+                        break;
+            case "ORANGE":  dir.rectangulo(rect, Color.ORANGE);
+                        break;
+            case "RED":  dir.rectangulo(rect, Color.RED);
+                        break;
+            case "BLUE":  dir.rectangulo(rect, Color.BLUE);
+                        break;
+            case "GRAY":  dir.rectangulo(rect, Color.GRAY);
+                        break;
+            case "YELLOW":  dir.rectangulo(rect, Color.YELLOW);
+                        break;    
+            case "GREEN":  dir.rectangulo(rect, Color.GREEN);
+                        break;  
+            default:
+                dir.rectangulo(rect, Color.BLACK); 
+                break;
+        }
+        
     }//GEN-LAST:event_btnRectanActionPerformed
 
     private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
@@ -202,15 +281,66 @@ public class pruebaDibujo extends javax.swing.JFrame {
         p3=new Punto(x3, y3);
         t =new Triangulo(p1, p2, p3);
         dir.triangulo(t, Color.red);
-        
+         switch (col){
+            case "BLACK":   dir.triangulo(t, Color.BLACK);
+                        break;
+            case "ORANGE":  dir.triangulo(t, Color.ORANGE);
+                        break;
+            case "RED":  dir.triangulo(t, Color.RED);
+                        break;
+            case "BLUE":  dir.triangulo(t, Color.BLUE);
+                        break;
+            case "GRAY":  dir.triangulo(t, Color.GRAY);
+                        break;
+            case "YELLOW":  dir.triangulo(t, Color.YELLOW);
+                        break;    
+            case "GREEN":  dir.triangulo(t, Color.GREEN);
+                        break;  
+            default:
+                dir.triangulo(t, Color.BLACK);
+                break;
+        }
     }//GEN-LAST:event_btnTrianguloActionPerformed
 
     private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
         p1=new Punto(px1, py1);
         p2=new Punto(px2, py2);
         l=new Linea(p1, p2);
-        dir.lineaDDA(l, Color.red);
+        
+        switch (col){
+            case "BLACK":   dir.lineaDDA(l, Color.BLACK);
+                        break;
+            case "ORANGE":  dir.lineaDDA(l, Color.ORANGE);
+                        break;
+            case "RED":  dir.lineaDDA(l, Color.RED);
+                        break;
+            case "BLUE":  dir.lineaDDA(l, Color.BLUE);
+                        break;
+            case "GRAY":  dir.lineaDDA(l, Color.GRAY);
+                        break;
+            case "YELLOW":  dir.lineaDDA(l, Color.YELLOW);
+                        break;    
+            case "GREEN":  dir.lineaDDA(l, Color.GREEN);
+                        break;  
+            default:
+                dir.lineaDDA(l, Color.BLACK);
+                break;
+        }
     }//GEN-LAST:event_btnLineaActionPerformed
+
+    private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
+        String coloSelec=(String) listColores.getSelectedItem();
+        col=coloSelec;
+        //System.out.println(col+" "); //si selecciona bien
+    }//GEN-LAST:event_listColoresActionPerformed
+
+    private void jlistGrosorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistGrosorActionPerformed
+        int gros=Integer.parseInt((String)jlistGrosor.getSelectedItem());
+        if(gros>0){
+            grosor=gros;
+            
+        }
+    }//GEN-LAST:event_jlistGrosorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +383,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JButton btnRectan;
     private javax.swing.JButton btnTriangulo;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JComboBox<String> jlistGrosor;
+    private javax.swing.JComboBox<String> listColores;
     private javax.swing.JPanel panelDibujo;
     // End of variables declaration//GEN-END:variables
 }
