@@ -160,6 +160,7 @@ public class DirectDrawDemo extends JPanel{
             x1dda=Math.round(cX1);
             y1dda=Math.round(cY1);
             i++;
+            System.out.println(x1dda+" dibuj "+ y1dda);
         }
     }
     
