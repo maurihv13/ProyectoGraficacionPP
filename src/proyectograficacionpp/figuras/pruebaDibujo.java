@@ -122,10 +122,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         menuItRect = new javax.swing.JMenuItem();
         menuItCuad = new javax.swing.JMenuItem();
         menuItCurvas = new javax.swing.JMenuItem();
-        menuOpLin = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        menuItColor = new javax.swing.JMenuItem();
-        menuItSegm = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -399,19 +395,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         menuFig.add(menuItCurvas);
 
         jMenuBar1.add(menuFig);
-
-        menuOpLin.setText("Opc Linea");
-
-        jMenuItem2.setText("Grosor");
-        menuOpLin.add(jMenuItem2);
-
-        menuItColor.setText("Color");
-        menuOpLin.add(menuItColor);
-
-        menuItSegm.setText("Segmentado");
-        menuOpLin.add(menuItSegm);
-
-        jMenuBar1.add(menuOpLin);
 
         setJMenuBar(jMenuBar1);
 
@@ -746,7 +729,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel jlbP1;
     private javax.swing.JLabel jlbP2;
     private javax.swing.JLabel jlbP3;
@@ -761,16 +743,13 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JMenu menuArch;
     private javax.swing.JMenu menuFig;
     private javax.swing.JMenuItem menuItCirc;
-    private javax.swing.JMenuItem menuItColor;
     private javax.swing.JMenuItem menuItCuad;
     private javax.swing.JMenuItem menuItCurvas;
     private javax.swing.JMenuItem menuItGuardar;
     private javax.swing.JMenuItem menuItLimpiar;
     private javax.swing.JMenuItem menuItLin;
     private javax.swing.JMenuItem menuItRect;
-    private javax.swing.JMenuItem menuItSegm;
     private javax.swing.JMenuItem menuItTriang;
-    private javax.swing.JMenu menuOpLin;
     private javax.swing.JPanel panelDibujo;
     private javax.swing.JPanel pnlBotn;
     // End of variables declaration//GEN-END:variables
