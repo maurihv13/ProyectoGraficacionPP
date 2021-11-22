@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Triangulo {
+public class Triangulo extends Figura{
     Punto puntos[];
     public Triangulo(Punto p1, Punto p2, Punto p3){
         puntos = new Punto[3];

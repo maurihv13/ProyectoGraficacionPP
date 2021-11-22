@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Rectangulo {
+public class Rectangulo extends Figura{
     private Punto[] puntos;
     private Punto pivote;
     public Rectangulo(Punto pSupIzq, Punto pInfDer){

@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Linea {
+public class Linea extends Figura{
     Punto puntos[];
     public Linea(Punto p1, Punto p2){
         puntos = new Punto[2];

@@ -7,6 +7,7 @@ package proyectograficacionpp.figuras;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.color.ColorSpace;
+import javax.swing.JOptionPane;
 import proyectograficacionpp.transformaciones.*;
 /**
  *
@@ -16,12 +17,15 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private DirectDrawDemo dir;
     
     private Punto p1,p2,p3,p4;
-    private int px1,py1,px2,py2,x3,y3,x4,y4,nroPuntos,grosor;
+    private int px1,py1,px2,py2,px3,py3,px4,py4,nroPuntos,grosor,radio,tamLinea;
     private Rectangulo rect;
     private Cuadrado cuad;
+    private Color actual;
     private Linea l;
     private Triangulo t;
+    private Figura figura;
     private String col;
+    private String opcFigura = "";
     
     /**
      * Creates new form pruebaDibujo
@@ -49,10 +53,10 @@ public class pruebaDibujo extends javax.swing.JFrame {
         px2=-1;
         py1=-1;
         py2=-1;
-        x3=-1;
-        y3=-1;
-        x4=-1;
-        y4=-1;
+        px3=-1;
+        py3=-1;
+        px4=-1;
+        py4=-1;
         grosor=1;
 
         //panelDibujo.setOpaque(false);
@@ -83,11 +87,12 @@ public class pruebaDibujo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         panelDibujo = new javax.swing.JPanel();
         pnlBotn = new javax.swing.JPanel();
         jlbP3 = new javax.swing.JLabel();
         jlbP4 = new javax.swing.JLabel();
-        btnRectan = new javax.swing.JButton();
         jlbP2 = new javax.swing.JLabel();
         listColores = new javax.swing.JComboBox<>();
         jlistGrosor = new javax.swing.JComboBox<>();
@@ -96,18 +101,35 @@ public class pruebaDibujo extends javax.swing.JFrame {
         jlblP1 = new javax.swing.JLabel();
         jlblP2 = new javax.swing.JLabel();
         jlblP3 = new javax.swing.JLabel();
-        btnLinea = new javax.swing.JButton();
         jlblP4 = new javax.swing.JLabel();
-        btnCuadrado = new javax.swing.JButton();
         jlblGrosor = new javax.swing.JLabel();
-        btnTriangulo = new javax.swing.JButton();
         jlbP1 = new javax.swing.JLabel();
-        btnLimpiar = new javax.swing.JButton();
-        txtFlado = new javax.swing.JTextField();
+        btnGraficar = new javax.swing.JButton();
+        btnTransladar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnCirculo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txtFradio = new javax.swing.JTextField();
+        btnRotacion = new javax.swing.JButton();
+        btnEscalar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuArch = new javax.swing.JMenu();
+        menuItGuardar = new javax.swing.JMenuItem();
+        menuItLimpiar = new javax.swing.JMenuItem();
+        menuFig = new javax.swing.JMenu();
+        menuItLin = new javax.swing.JMenuItem();
+        menuItCirc = new javax.swing.JMenuItem();
+        menuItTriang = new javax.swing.JMenuItem();
+        menuItRect = new javax.swing.JMenuItem();
+        menuItCuad = new javax.swing.JMenuItem();
+        menuItCurvas = new javax.swing.JMenuItem();
+        menuOpLin = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        menuItColor = new javax.swing.JMenuItem();
+        menuItSegm = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,19 +144,12 @@ public class pruebaDibujo extends javax.swing.JFrame {
         panelDibujo.setLayout(panelDibujoLayout);
         panelDibujoLayout.setHorizontalGroup(
             panelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 339, Short.MAX_VALUE)
+            .addGap(0, 354, Short.MAX_VALUE)
         );
         panelDibujoLayout.setVerticalGroup(
             panelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
-
-        btnRectan.setText("rectangulo");
-        btnRectan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRectanActionPerformed(evt);
-            }
-        });
 
         listColores.setModel(new javax.swing.DefaultComboBoxModel<>());
         listColores.addActionListener(new java.awt.event.ActionListener() {
@@ -170,124 +185,105 @@ public class pruebaDibujo extends javax.swing.JFrame {
 
         jlblP3.setText("p3(x,y):");
 
-        btnLinea.setText("linea");
-        btnLinea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLineaActionPerformed(evt);
-            }
-        });
-
         jlblP4.setText("p4(x,y):");
 
-        btnCuadrado.setText("cuadrado");
-        btnCuadrado.addActionListener(new java.awt.event.ActionListener() {
+        jlblGrosor.setText("Grosor:");
+
+        btnGraficar.setText("Graficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCuadradoActionPerformed(evt);
+                btnGraficarActionPerformed(evt);
             }
         });
 
-        jlblGrosor.setText("grosor:");
-
-        btnTriangulo.setText("triangulo");
-        btnTriangulo.addActionListener(new java.awt.event.ActionListener() {
+        btnTransladar.setText("Transladar");
+        btnTransladar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTrianguloActionPerformed(evt);
+                btnTransladarActionPerformed(evt);
             }
         });
 
-        btnLimpiar.setText("limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Segmentado:");
+
+        jLabel4.setText("Color:");
+
+        jLabel1.setText("Transformaciones:");
+
+        btnRotacion.setText("Rotar");
+        btnRotacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnRotacionActionPerformed(evt);
             }
         });
 
-        txtFlado.addActionListener(new java.awt.event.ActionListener() {
+        btnEscalar.setText("Escalar");
+        btnEscalar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFladoActionPerformed(evt);
+                btnEscalarActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Medida Lado:");
-
-        btnCirculo.setText("circulo");
-        btnCirculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCirculoActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Radio:");
 
         javax.swing.GroupLayout pnlBotnLayout = new javax.swing.GroupLayout(pnlBotn);
         pnlBotn.setLayout(pnlBotnLayout);
         pnlBotnLayout.setHorizontalGroup(
             pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addComponent(btnTriangulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCuadrado))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnLinea)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRectan)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFlado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(pnlBotnLayout.createSequentialGroup()
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlblGrosor)
-                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jlblP4))
-                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlBotnLayout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(pnlBotnLayout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                                        .addComponent(jlblP1)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(pnlBotnLayout.createSequentialGroup()
-                                        .addComponent(jlblP2)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                .addComponent(jlblP3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(90, 90, 90)
+                        .addComponent(btnGraficar))
                     .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(btnCirculo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFradio, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnLimpiar)
-                .addGap(119, 119, 119))
+                        .addGap(54, 54, 54)
+                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlBotnLayout.createSequentialGroup()
+                                .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addComponent(jlblGrosor)
+                                    .addGap(50, 50, 50)
+                                    .addComponent(jLabel4))
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlblP4)
+                                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(4, 4, 4)
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pnlBotnLayout.createSequentialGroup()
+                                            .addGap(26, 26, 26)
+                                            .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(pnlBotnLayout.createSequentialGroup()
+                                            .addGap(11, 11, 11)
+                                            .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
+                                            .addComponent(jlblP1)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(pnlBotnLayout.createSequentialGroup()
+                                            .addComponent(jlblP2)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addComponent(jlblP3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(pnlBotnLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnTransladar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRotacion)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnEscalar)))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         pnlBotnLayout.setVerticalGroup(
             pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,57 +304,136 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlblP4)
                     .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jlblGrosor)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btnTransladar)
+                    .addComponent(btnRotacion)
+                    .addComponent(btnEscalar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTriangulo)
-                    .addComponent(btnCuadrado)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFlado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jlblGrosor)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLinea)
-                    .addComponent(btnRectan))
-                .addGap(19, 19, 19)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCirculo)
-                    .addComponent(jLabel2)
-                    .addComponent(txtFradio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(btnLimpiar)
-                .addContainerGap())
+                    .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBotnLayout.createSequentialGroup()
+                        .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(btnGraficar)
+                        .addGap(33, 33, 33))))
         );
+
+        menuArch.setText("Archivo");
+
+        menuItGuardar.setText("Guardar");
+        menuItGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItGuardarActionPerformed(evt);
+            }
+        });
+        menuArch.add(menuItGuardar);
+
+        menuItLimpiar.setText("Limpiar Pantalla");
+        menuItLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItLimpiarActionPerformed(evt);
+            }
+        });
+        menuArch.add(menuItLimpiar);
+
+        jMenuBar1.add(menuArch);
+
+        menuFig.setText("Figuras");
+
+        menuItLin.setText("Linea");
+        menuItLin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItLinActionPerformed(evt);
+            }
+        });
+        menuFig.add(menuItLin);
+
+        menuItCirc.setText("Circunferencia");
+        menuItCirc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItCircActionPerformed(evt);
+            }
+        });
+        menuFig.add(menuItCirc);
+
+        menuItTriang.setText("Triangulo");
+        menuItTriang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItTriangActionPerformed(evt);
+            }
+        });
+        menuFig.add(menuItTriang);
+
+        menuItRect.setText("Rectangulo");
+        menuItRect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItRectActionPerformed(evt);
+            }
+        });
+        menuFig.add(menuItRect);
+
+        menuItCuad.setText("Cuadrado");
+        menuItCuad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItCuadActionPerformed(evt);
+            }
+        });
+        menuFig.add(menuItCuad);
+
+        menuItCurvas.setText("Curvas Bezier");
+        menuFig.add(menuItCurvas);
+
+        jMenuBar1.add(menuFig);
+
+        menuOpLin.setText("Opc Linea");
+
+        jMenuItem2.setText("Grosor");
+        menuOpLin.add(jMenuItem2);
+
+        menuItColor.setText("Color");
+        menuOpLin.add(menuItColor);
+
+        menuItSegm.setText("Segmentado");
+        menuOpLin.add(menuItSegm);
+
+        jMenuBar1.add(menuOpLin);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(panelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -381,133 +456,20 @@ public class pruebaDibujo extends javax.swing.JFrame {
                         
                         jlbP2.setText("("+""+px2+","+py2+")");
                         break;
-                case 3:x3=evt.getX();
-                       y3=evt.getY();
-                       System.out.println(x3+" "+y3);
-                       jlbP3.setText("("+""+x3+","+y3+")");
+                case 3:px3=evt.getX();
+                       py3=evt.getY();
+                       System.out.println(px3+" "+py3);
+                       jlbP3.setText("("+""+px3+","+py3+")");
                        break;
-                case 4:x4=evt.getX();
-                       y4=evt.getY();
-                       System.out.println(x4+" "+y4);
-                       jlbP4.setText("("+""+x4+","+y4+")");
+                case 4:px4=evt.getX();
+                       py4=evt.getY();
+                       System.out.println(px4+" "+py4);
+                       jlbP4.setText("("+""+px4+","+py4+")");
                        break;
                 default:
                     break;
             }
     }//GEN-LAST:event_panelDibujoMouseClicked
-
-    private void btnCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuadradoActionPerformed
-        p1=new Punto(px1, py1);
-        p2=new Punto(px2, py2);
-        p3=new Punto(x3, y3);
-        p4=new Punto(x4, y4);
-        int lado = Integer.parseInt(txtFlado.getText());
-        cuad=new Cuadrado(p1, lado);//un tamaño de los lados
-        
-        switch (col){
-            case "BLACK":   dir.cuadrado(cuad, Color.BLACK);
-                        break;
-            case "ORANGE":  dir.cuadrado(cuad, Color.ORANGE);
-                        break;
-            case "RED":  dir.cuadrado(cuad, Color.RED);
-                        break;
-            case "BLUE":  dir.cuadrado(cuad, Color.BLUE);
-                        break;
-            case "GRAY":  dir.cuadrado(cuad, Color.GRAY);
-                        break;
-            case "YELLOW":  dir.cuadrado(cuad, Color.YELLOW);
-                        break;    
-            case "GREEN":  dir.cuadrado(cuad, Color.GREEN);
-                        break;  
-            default:
-                dir.cuadrado(cuad, Color.BLACK);
-                break;
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnCuadradoActionPerformed
-
-    private void btnRectanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectanActionPerformed
-        p1=new Punto(px1, py1);
-        p2=new Punto(px2, py2);
-        p3=new Punto(x3, y3);
-        p4=new Punto(x4, y4);
-        rect = new Rectangulo(p1, p2); //solo 2 esquinas
-        switch (col){
-            case "BLACK":  dir.rectangulo(rect, Color.BLACK); 
-                        break;
-            case "ORANGE":  dir.rectangulo(rect, Color.ORANGE);
-                        break;
-            case "RED":  dir.rectangulo(rect, Color.RED);
-                        break;
-            case "BLUE":  dir.rectangulo(rect, Color.BLUE);
-                        break;
-            case "GRAY":  dir.rectangulo(rect, Color.GRAY);
-                        break;
-            case "YELLOW":  dir.rectangulo(rect, Color.YELLOW);
-                        break;    
-            case "GREEN":  dir.rectangulo(rect, Color.GREEN);
-                        break;  
-            default:
-                dir.rectangulo(rect, Color.BLACK); 
-                break;
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnRectanActionPerformed
-
-    private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
-        //dir = (DirectDrawDemo)panelDibujo; //hacer esto hace que crasee
-        p1=new Punto(px1, py1);
-        p2=new Punto(px2, py2);
-        p3=new Punto(x3, y3);
-        t =new Triangulo(p1, p2, p3);
-         switch (col){
-            case "BLACK":   dir.triangulo(t, Color.BLACK);
-                        break;
-            case "ORANGE":  dir.triangulo(t, Color.ORANGE);
-                        break;
-            case "RED":  dir.triangulo(t, Color.RED);
-                        break;
-            case "BLUE":  dir.triangulo(t, Color.BLUE);
-                        break;
-            case "GRAY":  dir.triangulo(t, Color.GRAY);
-                        break;
-            case "YELLOW":  dir.triangulo(t, Color.YELLOW);
-                        break;    
-            case "GREEN":  dir.triangulo(t, Color.GREEN);
-                        break;  
-            default:
-                dir.triangulo(t, Color.BLACK);
-                break;
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnTrianguloActionPerformed
-
-    private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
-        p1=new Punto(px1, py1);
-        p2=new Punto(px2, py2);
-        l=new Linea(p1, p2);
-        
-        switch (col){
-            case "BLACK":   dir.lineaDDA(l, Color.BLACK);
-                        break;
-            case "ORANGE":  dir.lineaDDA(l, Color.ORANGE);
-                        break;
-            case "RED":  dir.lineaDDA(l, Color.RED);
-                        break;
-            case "BLUE":  dir.lineaDDA(l, Color.BLUE);
-                        break;
-            case "GRAY":  dir.lineaDDA(l, Color.GRAY);
-                        break;
-            case "YELLOW":  dir.lineaDDA(l, Color.YELLOW);
-                        break;    
-            case "GREEN":  dir.lineaDDA(l, Color.GREEN);
-                        break;  
-            default:
-                dir.lineaDDA(l, Color.BLACK);
-                break;
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnLineaActionPerformed
 
     private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
         String coloSelec=(String) listColores.getSelectedItem();
@@ -532,7 +494,8 @@ public class pruebaDibujo extends javax.swing.JFrame {
     }//GEN-LAST:event_jComCantSegmentoActionPerformed
 
     private void checkSegmentadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkSegmentadoItemStateChanged
-        
+        nroPuntos = 0;
+        p1 = p2 =  p3 = p4 = null;
         boolean separar=checkSegmentado.getState();
         
         if(separar){
@@ -544,41 +507,197 @@ public class pruebaDibujo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkSegmentadoItemStateChanged
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void menuItGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItGuardarActionPerformed
+        this.borrarPuntos();
+        JOptionPane.showMessageDialog(this, "Guardar Archivo" ,"Guardar",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItGuardarActionPerformed
+
+    private void menuItLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItLimpiarActionPerformed
         dir.limpiarPant();
         dir.updateUI();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    }//GEN-LAST:event_menuItLimpiarActionPerformed
 
-    private void txtFladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFladoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFladoActionPerformed
+    private void menuItCuadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItCuadActionPerformed
+        JOptionPane
+                .showMessageDialog(this, "Ingrese el punto central \nHaciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        opcFigura = "cuadrado";
+        String tamLin = JOptionPane.showInputDialog("Ingrese el tamaño de lado: ");
+        this.tamLinea = Integer.parseInt(tamLin);
+        this.borrarPuntos();
+    }//GEN-LAST:event_menuItCuadActionPerformed
 
-    private void btnCirculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCirculoActionPerformed
-        p1=new Punto(px1, py1);
-        int radio = Integer.parseInt(txtFradio.getText());
-        Circunferencia circulo = new Circunferencia(p1,radio);
+    private void menuItLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItLinActionPerformed
+        JOptionPane
+                .showMessageDialog(this, "Ingrese los 2 puntos \nHaciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        opcFigura = "linea";
+        this.borrarPuntos();
+    }//GEN-LAST:event_menuItLinActionPerformed
+
+    private void menuItTriangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItTriangActionPerformed
+        JOptionPane
+                .showMessageDialog(this, "Ingrese los 3 puntos \nHaciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        opcFigura = "triangulo";
+        this.borrarPuntos();
+    }//GEN-LAST:event_menuItTriangActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        Color color = null;
+        //Escogiendo color
         switch (col){
-            case "BLACK":  dir.bresenham(circulo, Color.BLACK); 
+            case "BLACK":   color = Color.BLACK;
                         break;
-            case "ORANGE":  dir.bresenham(circulo, Color.ORANGE);
+            case "ORANGE":  color = Color.ORANGE;
                         break;
-            case "RED":  dir.bresenham(circulo, Color.RED);
+            case "RED":  color = Color.RED;
                         break;
-            case "BLUE":  dir.bresenham(circulo, Color.BLUE);
+            case "BLUE":  color = Color.BLUE;
                         break;
-            case "GRAY":  dir.bresenham(circulo, Color.GRAY);
+            case "GRAY":  color = Color.GRAY;
                         break;
-            case "YELLOW":  dir.bresenham(circulo, Color.YELLOW);
+            case "YELLOW":  color = Color.YELLOW;
                         break;    
-            case "GREEN":  dir.bresenham(circulo, Color.GREEN);
+            case "GREEN":  color = Color.GREEN;
                         break;  
             default:
-                dir.bresenham(circulo, Color.BLACK); 
+                color = Color.BLACK;
                 break;
         }
+        actual =  color;
+        if(opcFigura.equalsIgnoreCase("linea")){
+            p1=new Punto(px1, py1);
+            p2=new Punto(px2, py2);
+            l=new Linea(p1, p2);
+            figura = l;
+            dir.lineaDDA(l, color);
+        }
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            p1=new Punto(px1, py1);
+            //int radio = Integer.parseInt(txtFradio.getText());
+            Circunferencia circulo = new Circunferencia(p1,radio);
+            figura = circulo;
+            dir.bresenham(circulo, color);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            p1=new Punto(px1, py1);
+            p2=new Punto(px2, py2);
+            rect = new Rectangulo(p1, p2); //solo 2 esquinas
+            figura = rect;
+            dir.rectangulo(rect, color);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            p1=new Punto(px1, py1);
+            cuad=new Cuadrado(p1, tamLinea);//un tamaño de los lados
+            figura = cuad;
+            dir.cuadrado(cuad, color);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            p1=new Punto(px1, py1);
+            p2=new Punto(px2, py2);
+            p3=new Punto(px3, py3);
+            t =new Triangulo(p1, p2, p3);
+            figura = t;
+            dir.triangulo(t, color);
+        }
         dir.updateUI();
-    }//GEN-LAST:event_btnCirculoActionPerformed
+    }//GEN-LAST:event_btnGraficarActionPerformed
 
+    private void menuItCircActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItCircActionPerformed
+        JOptionPane
+                .showMessageDialog(this, "Ingrese el punto del centro \n Haciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        opcFigura = "circunferencia";
+    
+        String radio = JOptionPane.showInputDialog("Ingrese el radio de circunferencia: ");
+        this.radio = Integer.parseInt(radio);
+        this.borrarPuntos();
+    }//GEN-LAST:event_menuItCircActionPerformed
+
+    private void btnTransladarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransladarActionPerformed
+        String sx = JOptionPane.showInputDialog("Ingrese desplazamiento en X: ");
+        String sy = JOptionPane.showInputDialog("Ingrese desplazamiento en Y: ");
+        int sxI,syI;
+        sxI = Integer.parseInt(sx);
+        syI = Integer.parseInt(sy);
+        figura.translacion(sxI, syI);
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            dir.bresenham((Circunferencia)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("linea")){
+            dir.lineaDDA((Linea)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            dir.rectangulo((Rectangulo)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            dir.cuadrado((Cuadrado)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            dir.triangulo((Triangulo)figura, actual);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnTransladarActionPerformed
+
+    private void menuItRectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItRectActionPerformed
+        JOptionPane
+                .showMessageDialog(this, "Ingrese los 2 puntos (Superior Izquierdo y Inferior Derecho) \nHaciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        opcFigura = "rectangulo";
+        this.borrarPuntos();
+    }//GEN-LAST:event_menuItRectActionPerformed
+
+    private void btnRotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotacionActionPerformed
+        String ang = JOptionPane.showInputDialog("Ingrese angulo de rotacion: ");
+        int angI;
+        angI = Integer.parseInt(ang);
+        figura.rotacion(angI);
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            dir.bresenham((Circunferencia)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("linea")){
+            dir.lineaDDA((Linea)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            dir.rectangulo((Rectangulo)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            dir.cuadrado((Cuadrado)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            dir.triangulo((Triangulo)figura, actual);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnRotacionActionPerformed
+
+    private void btnEscalarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalarActionPerformed
+        String sx = JOptionPane.showInputDialog("Ingrese escalado en X(decimal): ");
+        String sy = JOptionPane.showInputDialog("Ingrese escalado en Y(decimal): ");
+        float sxI,syI;
+        sxI = Float.parseFloat(sx);
+        syI = Float.parseFloat(sy);
+        figura.escalacion(sxI, syI);
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            dir.bresenham((Circunferencia)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("linea")){
+            dir.lineaDDA((Linea)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            dir.rectangulo((Rectangulo)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            dir.cuadrado((Cuadrado)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            dir.triangulo((Triangulo)figura, actual);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnEscalarActionPerformed
+
+    
+    // Metodos propios
+    private void borrarPuntos(){
+        px1 = px2 = px3 = px4 = -1;
+        py1 = py2 = py3 = py4 = -1;
+        nroPuntos = 0;
+    }
     /**
      * @param args the command line arguments
      */
@@ -615,16 +734,19 @@ public class pruebaDibujo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCirculo;
-    private javax.swing.JButton btnCuadrado;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnLinea;
-    private javax.swing.JButton btnRectan;
-    private javax.swing.JButton btnTriangulo;
+    private javax.swing.JButton btnEscalar;
+    private javax.swing.JButton btnGraficar;
+    private javax.swing.JButton btnRotacion;
+    private javax.swing.JButton btnTransladar;
     private java.awt.Checkbox checkSegmentado;
     private javax.swing.JComboBox<String> jComCantSegmento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel jlbP1;
     private javax.swing.JLabel jlbP2;
     private javax.swing.JLabel jlbP3;
@@ -636,9 +758,20 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JLabel jlblP4;
     private javax.swing.JComboBox<String> jlistGrosor;
     private javax.swing.JComboBox<String> listColores;
+    private javax.swing.JMenu menuArch;
+    private javax.swing.JMenu menuFig;
+    private javax.swing.JMenuItem menuItCirc;
+    private javax.swing.JMenuItem menuItColor;
+    private javax.swing.JMenuItem menuItCuad;
+    private javax.swing.JMenuItem menuItCurvas;
+    private javax.swing.JMenuItem menuItGuardar;
+    private javax.swing.JMenuItem menuItLimpiar;
+    private javax.swing.JMenuItem menuItLin;
+    private javax.swing.JMenuItem menuItRect;
+    private javax.swing.JMenuItem menuItSegm;
+    private javax.swing.JMenuItem menuItTriang;
+    private javax.swing.JMenu menuOpLin;
     private javax.swing.JPanel panelDibujo;
     private javax.swing.JPanel pnlBotn;
-    private javax.swing.JTextField txtFlado;
-    private javax.swing.JTextField txtFradio;
     // End of variables declaration//GEN-END:variables
 }

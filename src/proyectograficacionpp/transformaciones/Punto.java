@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Punto {
+public class Punto{
     int x, y;
     int xResp, yResp;
     public Punto(int x, int y){

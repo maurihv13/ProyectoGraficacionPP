@@ -38,7 +38,7 @@ public class GraficaBresenham {
         
         //circ.translacion(50,0);
         
-        circ.escalacion(0.5f);
+        circ.escalacion(0.5f,0);
         
         c = Color.GREEN;
         panel.bresenham(circ, c);
@@ -46,7 +46,7 @@ public class GraficaBresenham {
         c = Color.BLUE;
         panel.bresenham(circ, c);
         
-        circ.escalacion(1.5f);
+        circ.escalacion(1.5f,0);
         //circ.acomodarPuntoEsc();
         panel.bresenham(circ, c);
         

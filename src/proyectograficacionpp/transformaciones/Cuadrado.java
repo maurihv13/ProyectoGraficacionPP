@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Cuadrado {
+public class Cuadrado extends Figura{
     private Punto[] puntos;
     private Punto pivote;
     public Cuadrado(Punto p, int tamLado){
@@ -63,4 +63,5 @@ public class Cuadrado {
         this.translacion(Tx, Ty);
         
     }
+
 }

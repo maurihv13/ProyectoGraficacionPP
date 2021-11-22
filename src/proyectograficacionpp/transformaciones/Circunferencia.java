@@ -9,7 +9,7 @@ package proyectograficacionpp.transformaciones;
  *
  * @author MAURICIO
  */
-public class Circunferencia {
+public class Circunferencia extends Figura{
     Punto centro;
     int radio;
     public Circunferencia(Punto c, int r){
@@ -19,9 +19,15 @@ public class Circunferencia {
     public void translacion(int sx, int sy){
         centro.translacion(sx, sy);
     }
-    public void escalacion(float escx){ //Escalar hace perdida de calidad en imagen
-        radio = Math.round(radio*escx);
-        //this.acomodarPuntoEsc();
+
+    @Override
+    public void escalacion(float escx, float escy) {
+        radio = Math.round(radio*escx); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void rotacion(int ang) {
+        //To change body of generated methods, choose Tools | Templates.
     }
     
 }
