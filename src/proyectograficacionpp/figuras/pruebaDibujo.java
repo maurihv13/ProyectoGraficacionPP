@@ -5,9 +5,13 @@
  */
 package proyectograficacionpp.figuras;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.color.ColorSpace;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import proyectograficacionpp.Operacion.CurvaBezier;
+import proyectograficacionpp.curvas.*;
 import proyectograficacionpp.transformaciones.*;
 /**
  *
@@ -26,6 +30,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private Figura figura;
     private String col;
     private String opcFigura = "";
+    private CurvaBezier ventCurv = new CurvaBezier();
     
     /**
      * Creates new form pruebaDibujo
@@ -39,6 +44,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         int anch=panelDibujo.getSize().width;
         int alt=panelDibujo.getSize().height;
         panelDibujo.setVisible(false);
+        panelDibujo.setOpaque(false);
         dir = new DirectDrawDemo(anch, alt);
         dir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -47,7 +53,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         });
         dir.setBounds(x, y, anch, alt);
         getContentPane().add(dir);
-        panelDibujo.setBackground(Color.red);
         nroPuntos=0;
         px1=-1;
         px2=-1;
@@ -91,19 +96,11 @@ public class pruebaDibujo extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         panelDibujo = new javax.swing.JPanel();
         pnlBotn = new javax.swing.JPanel();
-        jlbP3 = new javax.swing.JLabel();
-        jlbP4 = new javax.swing.JLabel();
-        jlbP2 = new javax.swing.JLabel();
         listColores = new javax.swing.JComboBox<>();
         jlistGrosor = new javax.swing.JComboBox<>();
         jComCantSegmento = new javax.swing.JComboBox<>();
         checkSegmentado = new java.awt.Checkbox();
-        jlblP1 = new javax.swing.JLabel();
-        jlblP2 = new javax.swing.JLabel();
-        jlblP3 = new javax.swing.JLabel();
-        jlblP4 = new javax.swing.JLabel();
         jlblGrosor = new javax.swing.JLabel();
-        jlbP1 = new javax.swing.JLabel();
         btnGraficar = new javax.swing.JButton();
         btnTransladar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -140,7 +137,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
         panelDibujo.setLayout(panelDibujoLayout);
         panelDibujoLayout.setHorizontalGroup(
             panelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         panelDibujoLayout.setVerticalGroup(
             panelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,14 +171,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 checkSegmentadoItemStateChanged(evt);
             }
         });
-
-        jlblP1.setText("p1(x,y):");
-
-        jlblP2.setText("p2(x,y):");
-
-        jlblP3.setText("p3(x,y):");
-
-        jlblP4.setText("p4(x,y):");
 
         jlblGrosor.setText("Grosor:");
 
@@ -226,88 +215,48 @@ public class pruebaDibujo extends javax.swing.JFrame {
             .addGroup(pnlBotnLayout.createSequentialGroup()
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(btnGraficar))
-                    .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(pnlBotnLayout.createSequentialGroup()
-                                    .addComponent(jlblGrosor)
-                                    .addGap(50, 50, 50)
-                                    .addComponent(jLabel4))
-                                .addGroup(pnlBotnLayout.createSequentialGroup()
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlblP4)
-                                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(4, 4, 4)
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                                            .addGap(11, 11, 11)
-                                            .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(pnlBotnLayout.createSequentialGroup()
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
-                                            .addComponent(jlblP1)
-                                            .addGap(18, 18, 18))
-                                        .addGroup(pnlBotnLayout.createSequentialGroup()
-                                            .addComponent(jlblP2)
-                                            .addGap(18, 18, 18)))
-                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlbP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(pnlBotnLayout.createSequentialGroup()
-                                    .addComponent(jlblP3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotnLayout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTransladar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRotacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEscalar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(pnlBotnLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(btnTransladar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnRotacion)
-                                .addGap(10, 10, 10)
-                                .addComponent(btnEscalar)))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnlBotnLayout.createSequentialGroup()
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlblGrosor)
+                                        .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(48, 48, 48)
+                                    .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4))))))
+                    .addGroup(pnlBotnLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(btnGraficar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBotnLayout.setVerticalGroup(
             pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotnLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblP1)
-                    .addComponent(jlbP1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlbP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlblP2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblP3)
-                    .addComponent(jlbP3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblP4)
-                    .addComponent(jlbP4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTransladar)
-                    .addComponent(btnRotacion)
-                    .addComponent(btnEscalar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTransladar)
+                .addGap(18, 18, 18)
+                .addComponent(btnRotacion)
+                .addGap(18, 18, 18)
+                .addComponent(btnEscalar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblGrosor)
                     .addComponent(jLabel4))
@@ -315,18 +264,16 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlistGrosor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBotnLayout.createSequentialGroup()
-                        .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(pnlBotnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlBotnLayout.createSequentialGroup()
-                        .addComponent(jComCantSegmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(btnGraficar)
-                        .addGap(33, 33, 33))))
+                        .addComponent(checkSegmentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnGraficar)))
+                .addGap(33, 75, Short.MAX_VALUE))
         );
 
         menuArch.setText("Archivo");
@@ -392,6 +339,11 @@ public class pruebaDibujo extends javax.swing.JFrame {
         menuFig.add(menuItCuad);
 
         menuItCurvas.setText("Curvas Bezier");
+        menuItCurvas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItCurvasActionPerformed(evt);
+            }
+        });
         menuFig.add(menuItCurvas);
 
         jMenuBar1.add(menuFig);
@@ -407,7 +359,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
                 .addComponent(panelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,75 +376,33 @@ public class pruebaDibujo extends javax.swing.JFrame {
 
     private void panelDibujoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDibujoMouseClicked
             // esto escucha cuando presiono el mouse
-           
-            nroPuntos=nroPuntos+1;
+            nroPuntos = nroPuntos+1;
             switch(nroPuntos){
                 case 1: px1=evt.getX();
                         py1=evt.getY();
-                        System.out.println(px1 +" "+ py1);
+                        p1 = new Punto(px1,py1);
+                        JOptionPane.showMessageDialog(this, "("+""+px1+","+py1+")" ,"Punto Definido #"+nroPuntos+"",JOptionPane.INFORMATION_MESSAGE);
                         
-                        jlbP1.setText("("+""+px1+","+py1+")");
                         break;
                 case 2: px2=evt.getX();
                         py2=evt.getY();
-                        System.out.println(px2 +" "+ py2);
-                        
-                        jlbP2.setText("("+""+px2+","+py2+")");
+                        p2 = new Punto(px2,py2);
+                        JOptionPane.showMessageDialog(this, "("+""+px2+","+py2+")" ,"Punto Definido #"+nroPuntos+"",JOptionPane.INFORMATION_MESSAGE);
                         break;
                 case 3:px3=evt.getX();
                        py3=evt.getY();
-                       System.out.println(px3+" "+py3);
-                       jlbP3.setText("("+""+px3+","+py3+")");
-                       break;
-                case 4:px4=evt.getX();
-                       py4=evt.getY();
-                       System.out.println(px4+" "+py4);
-                       jlbP4.setText("("+""+px4+","+py4+")");
+                       p3 = new Punto(px3,py3);
+                       JOptionPane.showMessageDialog(this, "("+""+px3+","+py3+")" ,"Punto Definido #"+nroPuntos+"",JOptionPane.INFORMATION_MESSAGE);
                        break;
                 default:
                     break;
             }
     }//GEN-LAST:event_panelDibujoMouseClicked
 
-    private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
-        String coloSelec=(String) listColores.getSelectedItem();
-        col=coloSelec;
-        
-        //System.out.println(col+" "); //si selecciona bien
-    }//GEN-LAST:event_listColoresActionPerformed
-
-    private void jlistGrosorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistGrosorActionPerformed
-        int gros=Integer.parseInt((String)jlistGrosor.getSelectedItem());
-        if(gros>0){
-            grosor=gros;
-            dir.setGrosor(grosor);
-        }
-    }//GEN-LAST:event_jlistGrosorActionPerformed
-
-    private void jComCantSegmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComCantSegmentoActionPerformed
-        int separ=Integer.parseInt((String)jComCantSegmento.getSelectedItem());
-        
-        dir.setCantSeparad(separ); //cambiamos al estado que quieras
-        //System.out.println(separ+"");
-    }//GEN-LAST:event_jComCantSegmentoActionPerformed
-
-    private void checkSegmentadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkSegmentadoItemStateChanged
-        nroPuntos = 0;
-        p1 = p2 =  p3 = p4 = null;
-        boolean separar=checkSegmentado.getState();
-        
-        if(separar){
-            dir.setEsSegmentado(separar); //aqui solo activamos y ya 
-            //System.out.println(separar+"");
-        }else{
-            dir.setEsSegmentado(separar);
-            //System.out.println(separar+"");
-        }
-    }//GEN-LAST:event_checkSegmentadoItemStateChanged
-
     private void menuItGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItGuardarActionPerformed
-        this.borrarPuntos();
-        JOptionPane.showMessageDialog(this, "Guardar Archivo" ,"Guardar",JOptionPane.INFORMATION_MESSAGE);
+       JOptionPane.showMessageDialog(this, "Guardar Archivo" ,"Guardar",JOptionPane.INFORMATION_MESSAGE);
+       String nombre = JOptionPane.showInputDialog("Ingrese un nombre de archivo: ");
+       this.guarImag(nombre);
     }//GEN-LAST:event_menuItGuardarActionPerformed
 
     private void menuItLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItLimpiarActionPerformed
@@ -523,67 +433,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         this.borrarPuntos();
     }//GEN-LAST:event_menuItTriangActionPerformed
 
-    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
-        Color color = null;
-        //Escogiendo color
-        switch (col){
-            case "BLACK":   color = Color.BLACK;
-                        break;
-            case "ORANGE":  color = Color.ORANGE;
-                        break;
-            case "RED":  color = Color.RED;
-                        break;
-            case "BLUE":  color = Color.BLUE;
-                        break;
-            case "GRAY":  color = Color.GRAY;
-                        break;
-            case "YELLOW":  color = Color.YELLOW;
-                        break;    
-            case "GREEN":  color = Color.GREEN;
-                        break;  
-            default:
-                color = Color.BLACK;
-                break;
-        }
-        actual =  color;
-        if(opcFigura.equalsIgnoreCase("linea")){
-            p1=new Punto(px1, py1);
-            p2=new Punto(px2, py2);
-            l=new Linea(p1, p2);
-            figura = l;
-            dir.lineaDDA(l, color);
-        }
-        if(opcFigura.equalsIgnoreCase("circunferencia")){
-            p1=new Punto(px1, py1);
-            //int radio = Integer.parseInt(txtFradio.getText());
-            Circunferencia circulo = new Circunferencia(p1,radio);
-            figura = circulo;
-            dir.bresenham(circulo, color);
-        }
-        if(opcFigura.equalsIgnoreCase("rectangulo")){
-            p1=new Punto(px1, py1);
-            p2=new Punto(px2, py2);
-            rect = new Rectangulo(p1, p2); //solo 2 esquinas
-            figura = rect;
-            dir.rectangulo(rect, color);
-        }
-        if(opcFigura.equalsIgnoreCase("cuadrado")){
-            p1=new Punto(px1, py1);
-            cuad=new Cuadrado(p1, tamLinea);//un tamaño de los lados
-            figura = cuad;
-            dir.cuadrado(cuad, color);
-        }
-        if(opcFigura.equalsIgnoreCase("triangulo")){
-            p1=new Punto(px1, py1);
-            p2=new Punto(px2, py2);
-            p3=new Punto(px3, py3);
-            t =new Triangulo(p1, p2, p3);
-            figura = t;
-            dir.triangulo(t, color);
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnGraficarActionPerformed
-
     private void menuItCircActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItCircActionPerformed
         JOptionPane
                 .showMessageDialog(this, "Ingrese el punto del centro \n Haciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
@@ -594,31 +443,6 @@ public class pruebaDibujo extends javax.swing.JFrame {
         this.borrarPuntos();
     }//GEN-LAST:event_menuItCircActionPerformed
 
-    private void btnTransladarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransladarActionPerformed
-        String sx = JOptionPane.showInputDialog("Ingrese desplazamiento en X: ");
-        String sy = JOptionPane.showInputDialog("Ingrese desplazamiento en Y: ");
-        int sxI,syI;
-        sxI = Integer.parseInt(sx);
-        syI = Integer.parseInt(sy);
-        figura.translacion(sxI, syI);
-        if(opcFigura.equalsIgnoreCase("circunferencia")){
-            dir.bresenham((Circunferencia)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("linea")){
-            dir.lineaDDA((Linea)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("rectangulo")){
-            dir.rectangulo((Rectangulo)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("cuadrado")){
-            dir.cuadrado((Cuadrado)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("triangulo")){
-            dir.triangulo((Triangulo)figura, actual);
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnTransladarActionPerformed
-
     private void menuItRectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItRectActionPerformed
         JOptionPane
                 .showMessageDialog(this, "Ingrese los 2 puntos (Superior Izquierdo y Inferior Derecho) \nHaciendo click en el panel grafico" ,"Instrucciones",JOptionPane.INFORMATION_MESSAGE);
@@ -626,28 +450,11 @@ public class pruebaDibujo extends javax.swing.JFrame {
         this.borrarPuntos();
     }//GEN-LAST:event_menuItRectActionPerformed
 
-    private void btnRotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotacionActionPerformed
-        String ang = JOptionPane.showInputDialog("Ingrese angulo de rotacion: ");
-        int angI;
-        angI = Integer.parseInt(ang);
-        figura.rotacion(angI);
-        if(opcFigura.equalsIgnoreCase("circunferencia")){
-            dir.bresenham((Circunferencia)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("linea")){
-            dir.lineaDDA((Linea)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("rectangulo")){
-            dir.rectangulo((Rectangulo)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("cuadrado")){
-            dir.cuadrado((Cuadrado)figura, actual);
-        }
-        if(opcFigura.equalsIgnoreCase("triangulo")){
-            dir.triangulo((Triangulo)figura, actual);
-        }
-        dir.updateUI();
-    }//GEN-LAST:event_btnRotacionActionPerformed
+    private void menuItCurvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItCurvasActionPerformed
+        ventCurv = new CurvaBezier();
+        ventCurv.setVisible(true);
+        ventCurv.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_menuItCurvasActionPerformed
 
     private void btnEscalarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalarActionPerformed
         String sx = JOptionPane.showInputDialog("Ingrese escalado en X(decimal): ");
@@ -674,12 +481,162 @@ public class pruebaDibujo extends javax.swing.JFrame {
         dir.updateUI();
     }//GEN-LAST:event_btnEscalarActionPerformed
 
+    private void btnRotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotacionActionPerformed
+        String ang = JOptionPane.showInputDialog("Ingrese angulo de rotacion: ");
+        int angI;
+        angI = Integer.parseInt(ang);
+        figura.rotacion(angI);
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            dir.bresenham((Circunferencia)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("linea")){
+            dir.lineaDDA((Linea)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            dir.rectangulo((Rectangulo)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            dir.cuadrado((Cuadrado)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            dir.triangulo((Triangulo)figura, actual);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnRotacionActionPerformed
+
+    private void btnTransladarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransladarActionPerformed
+        String sx = JOptionPane.showInputDialog("Ingrese desplazamiento en X: ");
+        String sy = JOptionPane.showInputDialog("Ingrese desplazamiento en Y: ");
+        int sxI,syI;
+        sxI = Integer.parseInt(sx);
+        syI = Integer.parseInt(sy);
+        figura.translacion(sxI, syI);
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            dir.bresenham((Circunferencia)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("linea")){
+            dir.lineaDDA((Linea)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            dir.rectangulo((Rectangulo)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            dir.cuadrado((Cuadrado)figura, actual);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            dir.triangulo((Triangulo)figura, actual);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnTransladarActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        Color color = null;
+        //Escogiendo color
+        switch (col){
+            case "BLACK":   color = Color.BLACK;
+            break;
+            case "ORANGE":  color = Color.ORANGE;
+            break;
+            case "RED":  color = Color.RED;
+            break;
+            case "BLUE":  color = Color.BLUE;
+            break;
+            case "GRAY":  color = Color.GRAY;
+            break;
+            case "YELLOW":  color = Color.YELLOW;
+            break;
+            case "GREEN":  color = Color.GREEN;
+            break;
+            default:
+            color = Color.BLACK;
+            break;
+        }
+        actual =  color;
+        if(opcFigura.equalsIgnoreCase("linea")){
+            l=new Linea(p1, p2);
+            figura = l;
+            dir.lineaDDA(l, color);
+        }
+        if(opcFigura.equalsIgnoreCase("circunferencia")){
+            //int radio = Integer.parseInt(txtFradio.getText());
+            Circunferencia circulo = new Circunferencia(p1,radio);
+            figura = circulo;
+            dir.bresenham(circulo, color);
+        }
+        if(opcFigura.equalsIgnoreCase("rectangulo")){
+            rect = new Rectangulo(p1, p2); //solo 2 esquinas
+            figura = rect;
+            dir.rectangulo(rect, color);
+        }
+        if(opcFigura.equalsIgnoreCase("cuadrado")){
+            cuad=new Cuadrado(p1, tamLinea);//un tamaño de los lados
+            figura = cuad;
+            dir.cuadrado(cuad, color);
+        }
+        if(opcFigura.equalsIgnoreCase("triangulo")){
+            t =new Triangulo(p1, p2, p3);
+            figura = t;
+            dir.triangulo(t, color);
+        }
+        dir.updateUI();
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
+    private void checkSegmentadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkSegmentadoItemStateChanged
+        //nroPuntos = 0;
+        // p1 = p2 =  p3 = p4 = null;
+        boolean separar=checkSegmentado.getState();
+
+        if(separar){
+            dir.setEsSegmentado(separar); //aqui solo activamos y ya
+            //System.out.println(separar+"");
+        }else{
+            dir.setEsSegmentado(separar);
+            //System.out.println(separar+"");
+        }
+    }//GEN-LAST:event_checkSegmentadoItemStateChanged
+
+    private void jComCantSegmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComCantSegmentoActionPerformed
+        int separ=Integer.parseInt((String)jComCantSegmento.getSelectedItem());
+
+        dir.setCantSeparad(separ); //cambiamos al estado que quieras
+        //System.out.println(separ+"");
+    }//GEN-LAST:event_jComCantSegmentoActionPerformed
+
+    private void jlistGrosorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistGrosorActionPerformed
+        int gros=Integer.parseInt((String)jlistGrosor.getSelectedItem());
+        if(gros>0){
+            grosor=gros;
+            dir.setGrosor(grosor);
+        }
+    }//GEN-LAST:event_jlistGrosorActionPerformed
+
+    private void listColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listColoresActionPerformed
+        String coloSelec=(String) listColores.getSelectedItem();
+        col=coloSelec;
+
+        //System.out.println(col+" "); //si selecciona bien
+    }//GEN-LAST:event_listColoresActionPerformed
+
     
     // Metodos propios
     private void borrarPuntos(){
         px1 = px2 = px3 = px4 = -1;
         py1 = py2 = py3 = py4 = -1;
+        p1 = p2 = p3 = null;
         nroPuntos = 0;
+    }
+    
+    private void guarImag(String nombrearch){
+        BufferedImage ima = null;
+        ima=dir.getCanvas();
+        String rutaS = "./imagenes/"+nombrearch+".jpg";
+        File ruta = new File(rutaS);
+        try{
+            ImageIO.write(ima,"jpg",ruta);
+        }catch(IOException e){
+            System.out.println("Error ");
+            
+        }
     }
     /**
      * @param args the command line arguments
@@ -729,15 +686,7 @@ public class pruebaDibujo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JLabel jlbP1;
-    private javax.swing.JLabel jlbP2;
-    private javax.swing.JLabel jlbP3;
-    private javax.swing.JLabel jlbP4;
     private javax.swing.JLabel jlblGrosor;
-    private javax.swing.JLabel jlblP1;
-    private javax.swing.JLabel jlblP2;
-    private javax.swing.JLabel jlblP3;
-    private javax.swing.JLabel jlblP4;
     private javax.swing.JComboBox<String> jlistGrosor;
     private javax.swing.JComboBox<String> listColores;
     private javax.swing.JMenu menuArch;

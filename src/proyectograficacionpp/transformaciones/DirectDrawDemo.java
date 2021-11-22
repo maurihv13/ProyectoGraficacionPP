@@ -189,7 +189,6 @@ public class DirectDrawDemo extends JPanel{
                 dibujarPunto(x1dda,y1dda,color,m);
             }
             
-            
             cX1=cX1 +xIncrementodda;
             cY1=cY1 +yIncrementodda;
             x1dda=Math.round(cX1);
@@ -271,6 +270,10 @@ public class DirectDrawDemo extends JPanel{
 
     public void setCantSeparad(int cantSeparad) {
         this.cantSeparad = cantSeparad;
+    }
+
+    public BufferedImage getCanvas() {
+        return canvas;
     }
     
 }

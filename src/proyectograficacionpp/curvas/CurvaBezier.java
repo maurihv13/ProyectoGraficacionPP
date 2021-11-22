@@ -1,8 +1,5 @@
-/*
- * Programado por Gustavo Zimbrón
- * www.zimbronapps.com 
- */
- 
+
+package proyectograficacionpp.curvas;
 
 import java.awt.Color;
 import java.awt.Graphics;
